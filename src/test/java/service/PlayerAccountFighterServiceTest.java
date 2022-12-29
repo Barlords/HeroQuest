@@ -1,6 +1,7 @@
 package service;
 
 import esgi.cleancode.database.InMemoryDatabase;
+import esgi.cleancode.service.PlayerAccountFightService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,7 +13,7 @@ public class PlayerAccountFighterServiceTest
 {
 
     @InjectMocks
-    PlayerAccountFighterService service;
+    PlayerAccountFightService service;
 
     @Mock
     InMemoryDatabase database;
