@@ -35,7 +35,6 @@ public class HeroCardCreatorServiceTest
     @Test
     void should_create_and_save_hero_card_in_database()
     {
-        var id = UUID.randomUUID();
         var given = HeroCard.builder().name("Kratos").life(100).power(10).armor(5).speciality(Speciality.TANK).rarity(Rarity.COMMON).build();
         when(database.saveHeroCard(any(HeroCard.class))).thenReturn(given);
         var actual = service.create(given.getName(), given.getLife(), given.getPower(), given.getArmor(), given.getSpeciality(), given.getRarity());
