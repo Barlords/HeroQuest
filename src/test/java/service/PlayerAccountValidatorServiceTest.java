@@ -14,7 +14,7 @@ public class PlayerAccountValidatorServiceTest {
     @Test
     void should_be_valid() {
         var given = PlayerAccount.builder().pseudo("Barlords").build();
-        var result = PlayerAccountValidatorService.isValidHeroCard(given);
+        var result = PlayerAccountValidatorService.isValidAccount(given);
         Assertions.assertTrue(result);
     }
 
@@ -22,7 +22,7 @@ public class PlayerAccountValidatorServiceTest {
     @NullAndEmptySource
     void should_be_not_valid_pseudo(String name) {
         var given = PlayerAccount.builder().pseudo(name).build();
-        var result = PlayerAccountValidatorService.isValidHeroCard(given);
+        var result = PlayerAccountValidatorService.isValidAccount(given);
         Assertions.assertFalse(result);
     }
 
