@@ -19,5 +19,6 @@ public class PlayerAccount {
 
     @Builder.Default
     @With
+    @Getter
     List<HeroCard> deck = new ArrayList<>();
 }
