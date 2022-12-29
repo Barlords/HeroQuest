@@ -5,7 +5,10 @@ import esgi.cleancode.domain.PlayerAccount;
 public class PlayerAccountValidatorService {
 
     public static boolean isValidHeroCard(PlayerAccount given) {
-        return false;
+        return (
+                null != given.getPseudo()
+                && 0 < given.getPseudo().length()
+        );
     }
 
 }
