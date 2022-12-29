@@ -1,4 +1,4 @@
-package esgi.cleancode.service;
+package esgi.cleancode.service.hero;
 
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
@@ -23,6 +23,7 @@ public class HeroCardCreatorService
                 .speciality(speciality)
                 .rarity(rarity)
                 .build();
+
         verifyHeroValidity(hero);
         return database.saveHeroCard(hero);
     }

@@ -1,4 +1,4 @@
-package esgi.cleancode.service;
+package esgi.cleancode.service.hero;
 
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;

@@ -1,7 +1,7 @@
 package service;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.service.PlayerAccountFightService;
+import esgi.cleancode.service.playeraccount.PlayerAccountFightService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

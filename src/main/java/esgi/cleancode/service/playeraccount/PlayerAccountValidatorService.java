@@ -1,4 +1,4 @@
-package esgi.cleancode.service;
+package esgi.cleancode.service.playeraccount;
 
 import esgi.cleancode.domain.PlayerAccount;
 

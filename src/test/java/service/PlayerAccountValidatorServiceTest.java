@@ -1,9 +1,7 @@
 package service;
 
-import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
-import esgi.cleancode.service.HeroCardValidatorService;
-import esgi.cleancode.service.PlayerAccountValidatorService;
+import esgi.cleancode.service.playeraccount.PlayerAccountValidatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

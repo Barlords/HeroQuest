@@ -1,12 +1,11 @@
-package esgi.cleancode.service;
+package esgi.cleancode.service.playeraccount;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
+import esgi.cleancode.service.hero.HeroCardFinderService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor

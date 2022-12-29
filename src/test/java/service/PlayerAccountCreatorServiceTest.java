@@ -3,7 +3,7 @@ package service;
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.exception.InvalidPlayerAccountException;
-import esgi.cleancode.service.PlayerAccountCreatorService;
+import esgi.cleancode.service.playeraccount.PlayerAccountCreatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

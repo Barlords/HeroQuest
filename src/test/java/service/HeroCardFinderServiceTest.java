@@ -3,7 +3,7 @@ package service;
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.exception.ResourceNotFoundException;
-import esgi.cleancode.service.HeroCardFinderService;
+import esgi.cleancode.service.hero.HeroCardFinderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

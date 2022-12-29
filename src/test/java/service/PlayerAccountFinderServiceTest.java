@@ -3,7 +3,7 @@ package service;
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.exception.ResourceNotFoundException;
-import esgi.cleancode.service.PlayerAccountFinderService;
+import esgi.cleancode.service.playeraccount.PlayerAccountFinderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

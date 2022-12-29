@@ -5,8 +5,7 @@ import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
 import esgi.cleancode.exception.InvalidHeroCardException;
-import esgi.cleancode.exception.InvalidPlayerAccountException;
-import esgi.cleancode.service.HeroCardCreatorService;
+import esgi.cleancode.service.hero.HeroCardCreatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +14,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

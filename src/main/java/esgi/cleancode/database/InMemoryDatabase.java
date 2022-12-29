@@ -2,6 +2,7 @@ package esgi.cleancode.database;
 
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
+import esgi.cleancode.exception.ResourceNotFoundException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -40,4 +41,5 @@ public class InMemoryDatabase {
     public Optional<HeroCard> findHeroCardById(UUID id) {
         return Optional.ofNullable(HERO_DATABASE.get(id));
     }
+
 }
