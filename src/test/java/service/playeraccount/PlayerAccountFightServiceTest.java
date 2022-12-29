@@ -1,4 +1,4 @@
-package service;
+package service.playeraccount;
 
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.service.playeraccount.PlayerAccountFightService;

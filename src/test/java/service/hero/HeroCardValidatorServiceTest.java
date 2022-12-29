@@ -1,4 +1,4 @@
-package service;
+package service.hero;
 
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.service.hero.HeroCardValidatorService;

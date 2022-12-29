@@ -1,9 +1,9 @@
-package service;
+package service.playeraccount;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.domain.HeroCard;
+import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.exception.ResourceNotFoundException;
-import esgi.cleancode.service.hero.HeroCardFinderService;
+import esgi.cleancode.service.playeraccount.PlayerAccountFinderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,10 +17,11 @@ import java.util.UUID;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardFinderServiceTest
+public class PlayerAccountFinderServiceTest
 {
+
     @InjectMocks
-    HeroCardFinderService service;
+    PlayerAccountFinderService service;
 
     @Mock
     InMemoryDatabase database;
@@ -29,8 +30,8 @@ public class HeroCardFinderServiceTest
     void should_find()
     {
         final var id = UUID.randomUUID();
-        final var given = HeroCard.builder().id(id).build();
-        when(database.findHeroCardById(id)).thenReturn(Optional.ofNullable(given));
+        final var given = PlayerAccount.builder().id(id).build();
+        when(database.findPlayerAccountById(id)).thenReturn(Optional.ofNullable(given));
         var actual = service.findById(id);
 
         Assertions.assertEquals(given, actual);
@@ -40,7 +41,7 @@ public class HeroCardFinderServiceTest
     void should_not_find()
     {
         final var id = UUID.randomUUID();
-        when(database.findHeroCardById(id)).thenReturn(Optional.empty());
+        when(database.findPlayerAccountById(id)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(ResourceNotFoundException.class, () -> service.findById(id));
     }

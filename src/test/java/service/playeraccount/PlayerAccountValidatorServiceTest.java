@@ -1,4 +1,4 @@
-package service;
+package service.playeraccount;
 
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.service.playeraccount.PlayerAccountValidatorService;
