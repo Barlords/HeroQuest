@@ -2,6 +2,8 @@ package service;
 
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
+import esgi.cleancode.domain.Rarity;
+import esgi.cleancode.domain.Speciality;
 import esgi.cleancode.service.HeroCardCreatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,7 @@ public class HeroCardCreatorServiceTest
     {
         var given = HeroCard.builder().build();
         when(database.saveHeroCard(given)).thenReturn(given);
-        var actual = service.create("Kratos");
+        var actual = service.create("Kratos", 100, 10, 5, Speciality.TANK, Rarity.COMMON);
 
         Assertions.assertEquals(given, actual);
     }

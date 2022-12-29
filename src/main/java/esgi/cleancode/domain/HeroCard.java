@@ -10,6 +10,14 @@ import java.util.UUID;
 public class HeroCard
 {
     UUID id;
-
-
+    String name;
+    int life;
+    @Builder.Default
+    int experience = 0;
+    int power;
+    int armor;
+    Speciality speciality;
+    Rarity rarity;
+    @Builder.Default
+    int level = 1;
 }
