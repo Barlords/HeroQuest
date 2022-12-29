@@ -4,6 +4,8 @@ import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
+import esgi.cleancode.exception.InvalidHeroCardException;
+import esgi.cleancode.exception.InvalidPlayerAccountException;
 import esgi.cleancode.service.HeroCardCreatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -45,5 +47,12 @@ public class HeroCardCreatorServiceTest
         Assertions.assertEquals(given, actual);
         Assertions.assertEquals(heroCardCaptor.getValue(), actual);
     }
+
+    @Test()
+    void should_not_create()
+    {
+        Assertions.assertThrows(InvalidHeroCardException.class, () -> service.create("", 100, 10, 5, Speciality.TANK, Rarity.COMMON));
+    }
+
 
 }

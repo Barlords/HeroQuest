@@ -23,11 +23,6 @@ public class InMemoryDatabase {
         return INSTANCE;
     }
 
-    public HeroCard saveCardToPLayer(HeroCard given, PlayerAccount player)
-    {
-        return null;
-    }
-
     public PlayerAccount savePlayerAccount(PlayerAccount playerAccountToSave) {
         PLAYER_ACCOUNT_DATABASE.put(playerAccountToSave.getId(), playerAccountToSave);
         return playerAccountToSave;
