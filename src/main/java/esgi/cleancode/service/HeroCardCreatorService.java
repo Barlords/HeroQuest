@@ -4,6 +4,7 @@ import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
+import esgi.cleancode.exception.InvalidHeroCardException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -22,7 +23,14 @@ public class HeroCardCreatorService
                 .speciality(speciality)
                 .rarity(rarity)
                 .build();
+        verifyHeroValidity(hero);
         return database.saveHeroCard(hero);
+    }
+
+    private void verifyHeroValidity(HeroCard hero) {
+        if (!HeroCardValidatorService.isValidHeroCard(hero)) {
+            throw new InvalidHeroCardException("HeroCard is not valid");
+        }
     }
 
 }
