@@ -1,6 +1,7 @@
 package esgi.cleancode.domain;
 
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Value;
 import lombok.With;
 
