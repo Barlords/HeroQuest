@@ -3,7 +3,6 @@ package service.hero;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.service.hero.HeroCardApplyArmorService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
