@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class HeroCardFinderService {
+public class HeroCardFinderInDatabaseService {
 
     private final InMemoryDatabase database;
 

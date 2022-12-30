@@ -1,7 +1,7 @@
 package esgi.cleancode.service.playeraccount;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.service.hero.HeroCardFinderService;
+import esgi.cleancode.service.hero.HeroCardFinderInDatabaseService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
@@ -11,7 +11,7 @@ public class PlayerAccountFightService {
 
     private PlayerAccountFinderService playerAccountFinderService;
 
-    private HeroCardFinderService heroCardFinderService;
+    private HeroCardFinderInDatabaseService heroCardFinderService;
 
     private InMemoryDatabase database;
 

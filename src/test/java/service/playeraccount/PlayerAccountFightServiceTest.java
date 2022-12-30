@@ -5,7 +5,7 @@ import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
-import esgi.cleancode.service.hero.HeroCardFinderService;
+import esgi.cleancode.service.hero.HeroCardFinderInDatabaseService;
 import esgi.cleancode.service.playeraccount.PlayerAccountFightService;
 import esgi.cleancode.service.playeraccount.PlayerAccountFinderService;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +28,7 @@ public class PlayerAccountFightServiceTest
     private PlayerAccountFinderService playerAccountFinderService;
 
     @Mock
-    private HeroCardFinderService heroCardFinderService;
+    private HeroCardFinderInDatabaseService heroCardFinderService;
 
     @Mock
     private InMemoryDatabase database;

@@ -2,6 +2,7 @@ package esgi.cleancode.domain;
 
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ public class HeroCard
     String name;
     int life;
     @Builder.Default
+    @With
     int experience = 0;
     int power;
     int armor;

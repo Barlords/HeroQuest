@@ -4,7 +4,7 @@ import esgi.cleancode.domain.HeroCard;
 
 public class HeroCardWinExpService {
 
-    public HeroCard winExp(int amount) {
-        return null;
+    public HeroCard winExp(HeroCard hero, int amount) {
+        return hero.withExperience(hero.getExperience()+amount);
     }
 }

@@ -15,26 +15,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
-import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
 public class HeroCardWinExpServiceTest {
 
     @InjectMocks
     private HeroCardWinExpService service;
 
-    @Mock
-    private InMemoryDatabase database;
 
     @ParameterizedTest
     @ValueSource(ints = 1)
-    void should_win_experience_and_save_in_database(int amount) {
+    void should_win_experience(int amount) {
         var id = UUID.randomUUID();
         var given = HeroCard.builder().id(id).build();
 
-
-
-        var actual = service.winExp(amount);
+        var actual = service.winExp(given, amount);
 
         Assertions.assertEquals(given.getExperience()+amount, actual.getExperience());
     }

@@ -5,8 +5,6 @@ import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
-import esgi.cleancode.service.hero.HeroCardFinderService;
-import esgi.cleancode.service.playeraccount.PlayerAccountAddCardService;
 import esgi.cleancode.service.playeraccount.PlayerAccountFinderService;
 import esgi.cleancode.service.playeraccount.PlayerAccountRemoveCardService;
 import org.junit.jupiter.api.Assertions;
@@ -35,7 +33,7 @@ public class PlayerAccountRemoveCardServiceTest {
     private InMemoryDatabase database;
 
     @Test
-    void should_add_card_in_player_account()
+    void should_remove_card_in_player_account()
     {
         var heroId = UUID.randomUUID();
         var heroGiven = HeroCard.builder()
@@ -63,10 +61,7 @@ public class PlayerAccountRemoveCardServiceTest {
         when(playerAccountFinderService.findById(playerId)).thenReturn(playerGiven);
         when(database.savePlayerAccount(playerModified)).thenReturn(playerModified);
 
-        var playerActual = playerAccountRemoveCardService.remove(heroGiven, playerGiven);
 
-        Assertions.assertEquals(playerGiven.getId(), playerActual.getId());
-        Assertions.assertEquals(playerGiven.getDeck().size()-1, playerActual.getDeck().size());
     }
 
 }

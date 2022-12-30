@@ -2,7 +2,7 @@ package esgi.cleancode.service.playeraccount;
 
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.PlayerAccount;
-import esgi.cleancode.service.hero.HeroCardFinderService;
+import esgi.cleancode.service.hero.HeroCardFinderInDatabaseService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ public class PlayerAccountAddCardService {
 
     private final PlayerAccountFinderService playerAccountFinderService;
 
-    private final HeroCardFinderService heroCardFinderService;
+    private final HeroCardFinderInDatabaseService heroCardFinderService;
 
-    public PlayerAccount addCardInPlayerAccount(UUID heroCardId, UUID playerAccountId)
+    public PlayerAccount add(UUID heroCardId, UUID playerAccountId)
     {
         var playerAccount = playerAccountFinderService.findById(playerAccountId);
         var heroCard = heroCardFinderService.findById(heroCardId);

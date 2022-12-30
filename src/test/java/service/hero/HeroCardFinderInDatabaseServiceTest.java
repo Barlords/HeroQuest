@@ -3,7 +3,7 @@ package service.hero;
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.exception.ResourceNotFoundException;
-import esgi.cleancode.service.hero.HeroCardFinderService;
+import esgi.cleancode.service.hero.HeroCardFinderInDatabaseService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,10 +17,10 @@ import java.util.UUID;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardFinderServiceTest
+public class HeroCardFinderInDatabaseServiceTest
 {
     @InjectMocks
-    HeroCardFinderService service;
+    HeroCardFinderInDatabaseService service;
 
     @Mock
     InMemoryDatabase database;
