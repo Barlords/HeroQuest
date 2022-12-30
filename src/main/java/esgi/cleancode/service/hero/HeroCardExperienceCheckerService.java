@@ -4,7 +4,7 @@ import esgi.cleancode.domain.HeroCard;
 
 public class HeroCardExperienceCheckerService {
 
-    public boolean canLevelUp(HeroCard given) {
-        return false;
+    static public boolean canLevelUp(HeroCard given) {
+        return given.getExperience() >= 5;
     }
 }
