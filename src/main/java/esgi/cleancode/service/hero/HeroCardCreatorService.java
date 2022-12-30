@@ -13,13 +13,13 @@ public class HeroCardCreatorService
 
     private final InMemoryDatabase database;
 
-    public HeroCard create(String name, int life, int power, int armor, Speciality speciality, Rarity rarity)
+    public HeroCard create(String name, Speciality speciality, Rarity rarity)
     {
         var hero = HeroCard.builder()
                 .name(name)
-                .life(life)
-                .power(power)
-                .armor(armor)
+                .life((int) (speciality.getLife() * (1 + rarity.getCoefficient())))
+                .power((int) (speciality.getPower() * (1 + rarity.getCoefficient())))
+                .armor((int) (speciality.getArmor() * (1 + rarity.getCoefficient())))
                 .speciality(speciality)
                 .rarity(rarity)
                 .build();
@@ -33,5 +33,4 @@ public class HeroCardCreatorService
             throw new InvalidHeroCardException("HeroCard is not valid");
         }
     }
-
 }

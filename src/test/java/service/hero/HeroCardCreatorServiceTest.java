@@ -34,9 +34,15 @@ public class HeroCardCreatorServiceTest
     @Test
     void should_create_and_save_hero_card_in_database()
     {
-        var given = HeroCard.builder().name("Kratos").life(100).power(10).armor(5).speciality(Speciality.TANK).rarity(Rarity.COMMON).build();
+        var given = HeroCard.builder()
+                .name("Kratos")
+                .life((int) (Speciality.TANK.getLife() * (1 + Rarity.COMMON.getCoefficient())))
+                .power((int) (Speciality.TANK.getPower() * (1 + Rarity.COMMON.getCoefficient())))
+                .armor((int) (Speciality.TANK.getArmor() * (1 + Rarity.COMMON.getCoefficient())))
+                .speciality(Speciality.TANK)
+                .rarity(Rarity.COMMON).build();
         when(database.saveHeroCard(any(HeroCard.class))).thenReturn(given);
-        var actual = service.create(given.getName(), given.getLife(), given.getPower(), given.getArmor(), given.getSpeciality(), given.getRarity());
+        var actual = service.create(given.getName(), given.getSpeciality(), given.getRarity());
 
         verify(database).saveHeroCard(heroCardCaptor.capture());
         verifyNoMoreInteractions(database);
@@ -48,7 +54,7 @@ public class HeroCardCreatorServiceTest
     @Test()
     void should_not_create()
     {
-        Assertions.assertThrows(InvalidHeroCardException.class, () -> service.create("", 100, 10, 5, Speciality.TANK, Rarity.COMMON));
+        Assertions.assertThrows(InvalidHeroCardException.class, () -> service.create("", Speciality.TANK, Rarity.COMMON));
     }
 
 
