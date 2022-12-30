@@ -18,21 +18,18 @@ public class HeroCardLevelUpServiceTest {
     @InjectMocks
     private HeroCardLevelUpService service;
 
-    @Mock
-    private InMemoryDatabase database;
-
     @Test
     void should_level_up() {
         var id = UUID.randomUUID();
-        var given = HeroCard.builder().id(id).experience(5).build();
+        var given = HeroCard.builder().id(id).level(1).experience(5).life(1000).power(100).armor(20).build();
 
         var actual = service.levelUp(given);
 
         Assertions.assertEquals(given.getExperience() - 5, actual.getExperience());
         Assertions.assertEquals(given.getLevel() + 1, actual.getLevel());
-        Assertions.assertEquals(given.getLife() * 1.1, actual.getLife());
-        Assertions.assertEquals(given.getPower() * 1.1, actual.getPower());
-        Assertions.assertEquals(given.getArmor() * 1.1, actual.getArmor());
+        Assertions.assertEquals((int) (given.getLife() * 1.1), actual.getLife());
+        Assertions.assertEquals((int) (given.getPower() * 1.1), actual.getPower());
+        Assertions.assertEquals((int) (given.getArmor() * 1.1), actual.getArmor());
     }
 
 }

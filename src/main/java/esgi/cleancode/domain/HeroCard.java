@@ -11,15 +11,27 @@ import java.util.UUID;
 public class HeroCard
 {
     UUID id;
+
     String name;
+
+    @With
     int life;
+
     @Builder.Default
     @With
     int experience = 0;
+
+    @With
     int power;
+
+    @With
     int armor;
+
     Speciality speciality;
+
     Rarity rarity;
+
     @Builder.Default
+    @With
     int level = 1;
 }
