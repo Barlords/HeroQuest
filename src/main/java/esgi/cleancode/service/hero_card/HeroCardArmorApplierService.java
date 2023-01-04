@@ -1,4 +1,4 @@
-package esgi.cleancode.service.hero;
+package esgi.cleancode.service.hero_card;
 
 import esgi.cleancode.domain.HeroCard;
 

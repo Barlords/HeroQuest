@@ -1,9 +1,9 @@
-package service.hero;
+package service.hero_card;
 
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
-import esgi.cleancode.service.hero.HeroCardAdvantageApplierService;
+import esgi.cleancode.service.hero_card.HeroCardAdvantageApplierService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

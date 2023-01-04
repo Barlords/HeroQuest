@@ -1,8 +1,8 @@
-package esgi.cleancode.service.playeraccount;
+package esgi.cleancode.validation;
 
 import esgi.cleancode.domain.PlayerAccount;
 
-public class PlayerAccountValidatorService {
+public class PlayerAccountValidator {
 
     public static boolean isValidAccount(PlayerAccount given) {
         return (

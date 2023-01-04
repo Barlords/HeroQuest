@@ -1,6 +1,7 @@
 package database;
 
 import esgi.cleancode.database.InMemoryDatabase;
+import esgi.cleancode.domain.Hero;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.PlayerAccount;
 import org.assertj.core.api.Assertions;
@@ -17,10 +18,10 @@ public class InMemoryDatabaseTest {
     @Test
     void should_save_and_find_hero() {
         final var id = UUID.randomUUID();
-        final var given = HeroCard.builder().id(id).build();
+        final var given = Hero.builder().id(id).build();
 
-        Assertions.assertThatNoException().isThrownBy(() -> database.saveHeroCard(given));
-        final var actual = database.findHeroCardById(id);
+        Assertions.assertThatNoException().isThrownBy(() -> database.saveHero(given));
+        final var actual = database.findHeroById(id);
 
         assertThat(actual).containsSame(given);
     }

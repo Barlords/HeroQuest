@@ -1,21 +1,26 @@
 package esgi.cleancode.service.hero;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.domain.HeroCard;
+import esgi.cleancode.domain.Hero;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
-import esgi.cleancode.exception.InvalidHeroCardException;
+import esgi.cleancode.exception.InvalidHeroException;
+import esgi.cleancode.validation.HeroValidator;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class HeroCardCreatorService
-{
+import java.util.UUID;
 
+@RequiredArgsConstructor
+public class HeroCreatorService
+{
     private final InMemoryDatabase database;
 
-    public HeroCard create(String name, Speciality speciality, Rarity rarity)
+    private final HeroIdGeneratorService heroIdGeneratorService;
+
+    public Hero create(String name, Speciality speciality, Rarity rarity)
     {
-        var hero = HeroCard.builder()
+        var hero = Hero.builder()
+                .id(heroIdGeneratorService.generateNewHeroId())
                 .name(name)
                 .life((int) (speciality.getLife() * (1 + rarity.getCoefficient())))
                 .power((int) (speciality.getPower() * (1 + rarity.getCoefficient())))
@@ -25,12 +30,12 @@ public class HeroCardCreatorService
                 .build();
 
         verifyHeroValidity(hero);
-        return database.saveHeroCard(hero);
+        return database.saveHero(hero);
     }
 
-    private void verifyHeroValidity(HeroCard hero) {
-        if (!HeroCardValidatorService.isValidHeroCard(hero)) {
-            throw new InvalidHeroCardException("HeroCard is not valid");
+    private void verifyHeroValidity(Hero hero) {
+        if (!HeroValidator.isValidHero(hero)) {
+            throw new InvalidHeroException("HeroCard is not valid");
         }
     }
 }

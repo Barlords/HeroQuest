@@ -1,7 +1,7 @@
-package service.hero;
+package service.hero_card;
 
 import esgi.cleancode.domain.HeroCard;
-import esgi.cleancode.service.hero.HeroCardLifeRemoverService;
+import esgi.cleancode.service.hero_card.HeroCardLifeRemoverService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

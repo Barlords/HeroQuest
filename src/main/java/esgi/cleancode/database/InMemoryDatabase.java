@@ -1,8 +1,7 @@
 package esgi.cleancode.database;
 
-import esgi.cleancode.domain.HeroCard;
+import esgi.cleancode.domain.Hero;
 import esgi.cleancode.domain.PlayerAccount;
-import esgi.cleancode.exception.ResourceNotFoundException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -11,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class InMemoryDatabase {
 
     private static InMemoryDatabase INSTANCE;
-    private static final java.util.Map<UUID, HeroCard> HERO_DATABASE = new ConcurrentHashMap<>();
+    private static final java.util.Map<UUID, Hero> HERO_DATABASE = new ConcurrentHashMap<>();
     private static final java.util.Map<UUID, PlayerAccount> PLAYER_ACCOUNT_DATABASE = new ConcurrentHashMap<>();
 
     private InMemoryDatabase() {
@@ -29,7 +28,7 @@ public class InMemoryDatabase {
         return playerAccountToSave;
     }
 
-    public HeroCard saveHeroCard(HeroCard heroToSave) {
+    public Hero saveHero(Hero heroToSave) {
         HERO_DATABASE.put(heroToSave.getId(), heroToSave);
         return heroToSave;
     }
@@ -38,7 +37,7 @@ public class InMemoryDatabase {
         return Optional.ofNullable(PLAYER_ACCOUNT_DATABASE.get(id));
     }
 
-    public Optional<HeroCard> findHeroCardById(UUID id) {
+    public Optional<Hero> findHeroById(UUID id) {
         return Optional.ofNullable(HERO_DATABASE.get(id));
     }
 

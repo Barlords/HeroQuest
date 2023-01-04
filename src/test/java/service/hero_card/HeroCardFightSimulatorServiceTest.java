@@ -1,19 +1,19 @@
-package service.hero;
+package service.hero_card;
 
-import esgi.cleancode.service.hero.HeroCardAdvantageApplierService;
-import esgi.cleancode.service.hero.HeroCardArmorApplierService;
-import esgi.cleancode.service.hero.HeroCardFighterService;
-import esgi.cleancode.service.hero.HeroCardLifeRemoverService;
+import esgi.cleancode.service.hero_card.HeroCardAdvantageApplierService;
+import esgi.cleancode.service.hero_card.HeroCardArmorApplierService;
+import esgi.cleancode.service.hero_card.HeroCardFightSimulatorService;
+import esgi.cleancode.service.hero_card.HeroCardLifeRemoverService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardFighterServiceTest {
+public class HeroCardFightSimulatorServiceTest {
 
     @InjectMocks
-    private HeroCardFighterService service;
+    private HeroCardFightSimulatorService service;
 
     @Mock
     private HeroCardArmorApplierService heroCardApplyArmorService;

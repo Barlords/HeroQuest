@@ -3,6 +3,7 @@ package esgi.cleancode.service.playeraccount;
 import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.exception.InvalidPlayerAccountException;
+import esgi.cleancode.validation.PlayerAccountValidator;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class PlayerAccountCreatorService {
     }
 
     private void verifyAccountValidity(PlayerAccount account) {
-        if (!PlayerAccountValidatorService.isValidAccount(account)) {
+        if (!PlayerAccountValidator.isValidAccount(account)) {
             throw new InvalidPlayerAccountException("Account is not valid");
         }
     }

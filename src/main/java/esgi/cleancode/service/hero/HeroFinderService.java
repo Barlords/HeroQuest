@@ -1,19 +1,19 @@
 package esgi.cleancode.service.hero;
 
 import esgi.cleancode.database.InMemoryDatabase;
-import esgi.cleancode.domain.HeroCard;
+import esgi.cleancode.domain.Hero;
 import esgi.cleancode.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class HeroCardFinderInDatabaseService {
+public class HeroFinderService {
 
     private final InMemoryDatabase database;
 
-    public HeroCard findById(UUID id)
+    public Hero findById(UUID id)
     {
-        return database.findHeroCardById(id).orElseThrow(() -> new ResourceNotFoundException("HeroCard not found"));
+        return database.findHeroById(id).orElseThrow(() -> new ResourceNotFoundException("HeroCard not found"));
     }
 }
