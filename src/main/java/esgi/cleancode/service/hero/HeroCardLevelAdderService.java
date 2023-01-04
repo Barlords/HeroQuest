@@ -2,7 +2,7 @@ package esgi.cleancode.service.hero;
 
 import esgi.cleancode.domain.HeroCard;
 
-public class HeroCardLevelUpService {
+public class HeroCardLevelAdderService {
 
     public HeroCard levelUp(HeroCard given) {
         return given

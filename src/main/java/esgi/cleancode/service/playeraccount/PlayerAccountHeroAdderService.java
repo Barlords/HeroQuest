@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class PlayerAccountAddCardService {
+public class PlayerAccountHeroAdderService {
 
     private final InMemoryDatabase database;
 

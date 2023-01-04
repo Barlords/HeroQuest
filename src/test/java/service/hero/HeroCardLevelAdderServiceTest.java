@@ -1,7 +1,7 @@
 package service.hero;
 
 import esgi.cleancode.domain.HeroCard;
-import esgi.cleancode.service.hero.HeroCardLevelUpService;
+import esgi.cleancode.service.hero.HeroCardLevelAdderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,10 +11,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardLevelUpServiceTest {
+public class HeroCardLevelAdderServiceTest {
 
     @InjectMocks
-    private HeroCardLevelUpService service;
+    private HeroCardLevelAdderService service;
 
     @Test
     void should_level_up() {

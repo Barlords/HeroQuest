@@ -6,7 +6,7 @@ import esgi.cleancode.domain.PlayerAccount;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
 import esgi.cleancode.service.hero.HeroCardFinderInDatabaseService;
-import esgi.cleancode.service.playeraccount.PlayerAccountAddCardService;
+import esgi.cleancode.service.playeraccount.PlayerAccountHeroAdderService;
 import esgi.cleancode.service.playeraccount.PlayerAccountFinderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class PlayerAccountAddCardServiceTest
 {
 
     @InjectMocks
-    private PlayerAccountAddCardService playerAccountAddCardService;
+    private PlayerAccountHeroAdderService playerAccountAddCardService;
 
     @Mock
     private PlayerAccountFinderService playerAccountFinderService;

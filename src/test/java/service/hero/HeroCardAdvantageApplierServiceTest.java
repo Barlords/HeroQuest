@@ -3,7 +3,7 @@ package service.hero;
 import esgi.cleancode.domain.HeroCard;
 import esgi.cleancode.domain.Rarity;
 import esgi.cleancode.domain.Speciality;
-import esgi.cleancode.service.hero.HeroCardApplyAdvantageService;
+import esgi.cleancode.service.hero.HeroCardAdvantageApplierService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,10 +12,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardApplyAdvantageServiceTest {
+public class HeroCardAdvantageApplierServiceTest {
 
     @InjectMocks
-    private HeroCardApplyAdvantageService service;
+    private HeroCardAdvantageApplierService service;
 
     @ParameterizedTest
     @ValueSource(ints = 100)

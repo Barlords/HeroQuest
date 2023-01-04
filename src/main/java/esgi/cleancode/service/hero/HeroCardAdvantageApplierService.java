@@ -2,7 +2,7 @@ package esgi.cleancode.service.hero;
 
 import esgi.cleancode.domain.HeroCard;
 
-public class HeroCardApplyAdvantageService {
+public class HeroCardAdvantageApplierService {
 
     public int apply(HeroCard givenAtt, HeroCard givenDef, int damage) {
         int result = damage;

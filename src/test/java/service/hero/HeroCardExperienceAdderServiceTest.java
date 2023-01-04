@@ -1,25 +1,21 @@
 package service.hero;
 
-import esgi.cleancode.database.InMemoryDatabase;
 import esgi.cleancode.domain.HeroCard;
-import esgi.cleancode.domain.PlayerAccount;
-import esgi.cleancode.service.hero.HeroCardWinExpService;
+import esgi.cleancode.service.hero.HeroCardExperienceAdderService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardWinExpServiceTest {
+public class HeroCardExperienceAdderServiceTest {
 
     @InjectMocks
-    private HeroCardWinExpService service;
+    private HeroCardExperienceAdderService service;
 
 
     @ParameterizedTest

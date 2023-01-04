@@ -4,17 +4,17 @@ import esgi.cleancode.domain.HeroCard;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class HeroCardFightService {
+public class HeroCardFighterService {
 
-    private HeroCardApplyArmorService heroCardApplyArmorService;
+    private HeroCardArmorApplierService heroCardApplyArmorService;
 
-    private HeroCardApplyAdvantageService heroCardApplyAdvantageService;
+    private HeroCardAdvantageApplierService heroCardApplyAdvantageService;
 
-    private HeroCardRemoveLifeService heroCardRemoveLifeService;
+    private HeroCardLifeRemoverService heroCardRemoveLifeService;
 
-    private HeroCardWinExpService heroCardWinExpService;
+    private HeroCardExperienceAdderService heroCardWinExpService;
 
-    private HeroCardLevelUpService heroCardLevelUpService;
+    private HeroCardLevelAdderService heroCardLevelUpService;
 
     public HeroCard fight(HeroCard hero1, HeroCard hero2) {
         var hero1LifeBackup = hero1.getLife();

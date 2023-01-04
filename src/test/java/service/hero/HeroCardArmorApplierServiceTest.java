@@ -1,7 +1,7 @@
 package service.hero;
 
 import esgi.cleancode.domain.HeroCard;
-import esgi.cleancode.service.hero.HeroCardApplyArmorService;
+import esgi.cleancode.service.hero.HeroCardArmorApplierService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,10 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroCardApplyArmorServiceTest {
+public class HeroCardArmorApplierServiceTest {
 
     @InjectMocks
-    private HeroCardApplyArmorService service;
+    private HeroCardArmorApplierService service;
 
     @ParameterizedTest
     @ValueSource(ints = 100)
