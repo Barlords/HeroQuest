@@ -14,6 +14,6 @@ public class HeroFinderService {
 
     public Hero findById(UUID id)
     {
-        return database.findHeroById(id).orElseThrow(() -> new ResourceNotFoundException("HeroCard not found"));
+        return database.findHeroById(id).orElseThrow(() -> new ResourceNotFoundException("Hero not found"));
     }
 }

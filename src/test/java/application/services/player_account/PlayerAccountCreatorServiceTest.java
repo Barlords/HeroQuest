@@ -41,6 +41,7 @@ public class PlayerAccountCreatorServiceTest
 
         Assertions.assertEquals(given, actual);
         Assertions.assertEquals(playerAccountCaptor.getValue(), actual);
+        Assertions.assertEquals(4, actual.getNbToken());
     }
 
     @Test()

@@ -85,8 +85,4 @@ public class PlayerAccountHeroCardAdderServiceTest
         Assertions.assertEquals(heroCardGiven, playerActual.getDeck().get(0));
     }
 
-    @Test
-    void should_not_found_player_account() {
-
-    }
 }

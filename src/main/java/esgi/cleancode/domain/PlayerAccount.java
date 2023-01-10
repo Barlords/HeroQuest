@@ -1,7 +1,6 @@
 package esgi.cleancode.domain;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Value;
 import lombok.With;
 
@@ -19,6 +18,9 @@ public class PlayerAccount {
 
     @Builder.Default
     @With
-    @Getter
     List<HeroCard> deck = new ArrayList<>();
+
+    @With
+    @Builder.Default
+    int nbToken = 4;
 }

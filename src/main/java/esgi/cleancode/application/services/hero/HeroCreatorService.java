@@ -26,7 +26,6 @@ public class HeroCreatorService
                 .speciality(speciality)
                 .rarity(rarity)
                 .build();
-
         verifyHeroValidity(hero);
         return database.saveHero(hero);
     }
