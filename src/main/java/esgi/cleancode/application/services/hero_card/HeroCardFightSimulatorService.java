@@ -6,27 +6,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HeroCardFightSimulatorService {
 
-    private HeroCardArmorApplierService heroCardArmorApplierService;
+    private final HeroCardArmorApplierService heroCardArmorApplierService;
 
-    private HeroCardAdvantageApplierService heroCardAdvantageApplierService;
+    private final HeroCardAdvantageApplierService heroCardAdvantageApplierService;
 
-    private HeroCardLifeRemoverService heroCardLifeRemoverService;
+    private final HeroCardLifeRemoverService heroCardLifeRemoverService;
 
-    private HeroCardExperienceAdderService heroCardExperienceAdderService;
+    private final HeroCardExperienceAdderService heroCardExperienceAdderService;
 
-    private HeroCardLevelAdderService heroCardLevelAdderService;
-
-    public HeroCardFightSimulatorService(HeroCardArmorApplierService heroCardArmorApplierService,
-                                         HeroCardAdvantageApplierService heroCardAdvantageApplierService,
-                                         HeroCardLifeRemoverService heroCardLifeRemoverService,
-                                         HeroCardExperienceAdderService heroCardExperienceAdderService,
-                                         HeroCardLevelAdderService heroCardLevelAdderService) {
-        this.heroCardArmorApplierService = heroCardArmorApplierService;
-        this.heroCardAdvantageApplierService = heroCardAdvantageApplierService;
-        this.heroCardLifeRemoverService = heroCardLifeRemoverService;
-        this.heroCardExperienceAdderService = heroCardExperienceAdderService;
-        this.heroCardLevelAdderService = heroCardLevelAdderService;
-    }
+    private final HeroCardLevelAdderService heroCardLevelAdderService;
 
     public HeroCard fight(HeroCard hero1, HeroCard hero2) {
         var hero1LifeBackup = hero1.getLife();
