@@ -3,14 +3,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>bootstrap</artifactId>
+    <name>hero-quest-bootstrap</name>
+
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <parent>
         <artifactId>hero-quest</artifactId>
         <groupId>esgi.cleancode</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <artifactId>bootstrap</artifactId>
 
     <dependencies>
         <dependency>
@@ -28,14 +31,18 @@
         <dependency>
             <groupId>esgi.cleancode</groupId>
             <artifactId>domain</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>esgi.cleancode</groupId>
             <artifactId>client</artifactId>
+            <version>${project.version}</version>
+
         </dependency>
         <dependency>
             <groupId>esgi.cleancode</groupId>
             <artifactId>server</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
@@ -63,7 +70,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>

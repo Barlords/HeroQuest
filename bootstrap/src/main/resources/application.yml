@@ -5,7 +5,7 @@ server:
     enabled: true
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
     driverClassName: org.h2.Driver
     username: cleancode
     password: cleancode
@@ -16,4 +16,7 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.H2Dialect
   h2:
-    console.enabled: true
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true

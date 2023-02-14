@@ -17,17 +17,17 @@ import javax.persistence.*;
 public class HeroEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hero_id")
     private Long id;
 
     @Column(unique = true, name = "name")
     private String name;
 
     @Column(name = "rarity")
-    private Rarity rarity;
+    private String rarity;
 
     @Column(name = "speciality")
-    private Speciality speciality;
+    private String speciality;
 
 }
