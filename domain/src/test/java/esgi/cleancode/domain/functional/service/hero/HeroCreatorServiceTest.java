@@ -17,8 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.UUID;
-
 import static io.vavr.API.Left;
 import static io.vavr.API.Right;
 import static org.assertj.vavr.api.VavrAssertions.assertThat;

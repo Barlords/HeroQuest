@@ -11,7 +11,7 @@ import static esgi.cleancode.bootstrap.PackagesAndLayers.BOOTSTRAP_PACKAGE;
 import static esgi.cleancode.bootstrap.PackagesAndLayers.SERVER_PACKAGE;
 
 @AnalyzeClasses(
-    packages = "fr.carbon.it.tech.prez.archi.hexa.server",
+    packages = "esgi.cleancode.server.postgres",
     cacheMode = FOREVER,
     importOptions = {DoNotIncludeTests.class})
 public class ServerDevelopmentRulesTest {

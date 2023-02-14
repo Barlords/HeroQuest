@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
@@ -27,7 +26,7 @@ public class HeroFinderServiceTest
     @Test
     void should_find()
     {
-        final var heroId = UUID.randomUUID();
+        final var heroId = 1L;
         final var heroGiven = Hero.builder().id(heroId).build();
         when(database.findHeroById(heroId)).thenReturn(Optional.ofNullable(heroGiven));
         var actual = service.findById(heroId);
@@ -38,9 +37,9 @@ public class HeroFinderServiceTest
     @Test
     void should_not_find()
     {
-        final var id = UUID.randomUUID();
-        when(database.findHeroById(id)).thenReturn(Optional.empty());
+        final var heroId = 1L;
+        when(database.findHeroById(heroId)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(ResourceNotFoundException.class, () -> service.findById(id));
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> service.findById(heroId));
     }
 }

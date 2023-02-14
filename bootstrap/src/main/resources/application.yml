@@ -1,0 +1,19 @@
+server:
+  address: 0.0.0.0
+  port: 8080
+  compression:
+    enabled: true
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: cleancode
+    password: cleancode
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate.ddl-auto: create-drop
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true

@@ -11,7 +11,7 @@ import static esgi.cleancode.bootstrap.PackagesAndLayers.BOOTSTRAP_PACKAGE;
 import static esgi.cleancode.bootstrap.PackagesAndLayers.CLIENT_PACKAGE;
 
 @AnalyzeClasses(
-    packages = "fr.carbon.it.tech.prez.archi.hexa.client",
+    packages = "esgi.cleancode.client.rest",
     cacheMode = FOREVER,
     importOptions = {DoNotIncludeTests.class})
 public class ClientDevelopmentRulesTest {

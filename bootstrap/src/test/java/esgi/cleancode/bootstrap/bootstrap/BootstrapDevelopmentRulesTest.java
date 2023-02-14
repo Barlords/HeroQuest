@@ -10,7 +10,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static esgi.cleancode.bootstrap.PackagesAndLayers.BOOTSTRAP_PACKAGE;
 
 @AnalyzeClasses(
-    packages = "fr.carbon.it.tech.prez.archi.hexa.bootstrap",
+    packages = "esgi.cleancode.bootstrap",
     cacheMode = FOREVER,
     importOptions = {DoNotIncludeTests.class})
 public class BootstrapDevelopmentRulesTest {

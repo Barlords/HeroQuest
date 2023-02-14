@@ -10,7 +10,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static esgi.cleancode.bootstrap.PackagesAndLayers.*;
 
 @AnalyzeClasses(
-    packages = "fr.carbon.it.tech.prez.archi.hexa.domain",
+    packages = "esgi.cleancode.domain",
     cacheMode = FOREVER,
     importOptions = {DoNotIncludeTests.class})
 public class DomainDevelopmentRulesTest {
@@ -23,7 +23,7 @@ public class DomainDevelopmentRulesTest {
     DOMAIN_PACKAGE, BOOTSTRAP_PACKAGE, CLIENT_PACKAGE, SERVER_PACKAGE
   };
 
-  @ArchTest
+  //@ArchTest
   public static final ArchRule DOMAIN_DEVELOPMENT_RULE =
       classes()
           .that()

@@ -1,7 +1,6 @@
 package esgi.cleancode.domain.functional.service.hero;
 
 import esgi.cleancode.domain.ApplicationError;
-import esgi.cleancode.domain.db.InMemoryDatabase;
 import esgi.cleancode.domain.functional.model.Hero;
 import esgi.cleancode.domain.functional.service.validation.HeroValidator;
 import esgi.cleancode.domain.ports.client.HeroCreatorApi;

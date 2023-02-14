@@ -4,8 +4,8 @@ public class PackagesAndLayers {
   // APPLICATION PACKAGES
   public static final String BOOTSTRAP_PACKAGE = "esgi.cleancode.bootstrap..";
   public static final String DOMAIN_PACKAGE = "esgi.cleancode.domain..";
-  public static final String CLIENT_PACKAGE = "esgi.cleancode.client..";
-  public static final String SERVER_PACKAGE = "esgi.cleancode.server..";
+  public static final String CLIENT_PACKAGE = "esgi.cleancode.client.rest..";
+  public static final String SERVER_PACKAGE = "esgi.cleancode.server.postgres..";
 
   // JAVA, FRAMEWORKS AND LIBRARIES PACKAGES
   public static final String JAVA_PACKAGE = "java..";

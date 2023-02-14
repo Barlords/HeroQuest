@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class InMemoryDatabase {
 
     private static InMemoryDatabase INSTANCE;
-    private static final java.util.Map<UUID, Hero> HERO_DATABASE = new ConcurrentHashMap<>();
+    private static final java.util.Map<Long, Hero> HERO_DATABASE = new ConcurrentHashMap<>();
     private static final java.util.Map<UUID, PlayerAccount> PLAYER_ACCOUNT_DATABASE = new ConcurrentHashMap<>();
 
     private InMemoryDatabase() {
@@ -37,7 +37,7 @@ public class InMemoryDatabase {
         return Optional.ofNullable(PLAYER_ACCOUNT_DATABASE.get(id));
     }
 
-    public Optional<Hero> findHeroById(UUID id) {
+    public Optional<Hero> findHeroById(Long id) {
         return Optional.ofNullable(HERO_DATABASE.get(id));
     }
 

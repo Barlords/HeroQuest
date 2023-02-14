@@ -21,7 +21,7 @@ public class PlayerAccountHeroCardAdderService {
 
     private final HeroFinderService heroFinderService;
 
-    public PlayerAccount add(UUID heroId, UUID playerAccountId)
+    public PlayerAccount add(Long heroId, UUID playerAccountId)
     {
         var playerAccount = playerAccountFinderService.findById(playerAccountId);
         var hero = heroFinderService.findById(heroId);

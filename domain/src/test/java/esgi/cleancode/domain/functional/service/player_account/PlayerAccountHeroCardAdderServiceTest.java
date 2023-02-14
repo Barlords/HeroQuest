@@ -44,7 +44,7 @@ public class PlayerAccountHeroCardAdderServiceTest
                 .pseudo("Barlords")
                 .build();
 
-        var heroId = UUID.randomUUID();
+        var heroId = 1L;
         var heroGiven = Hero.builder()
                 .id(heroId)
                 .name("Kratos")
