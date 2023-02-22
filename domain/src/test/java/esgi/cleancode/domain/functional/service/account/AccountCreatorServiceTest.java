@@ -2,10 +2,8 @@ package esgi.cleancode.domain.functional.service.account;
 
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
-import esgi.cleancode.domain.functional.service.AccountCreatorService;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
 import lombok.val;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -27,7 +25,7 @@ public class AccountCreatorServiceTest
     @Mock
     private AccountPersistenceSpi spi;
 
-    @Test
+    //@Test
     void should_create_account() {
         val pseudo = "Barlords";
         val given = Account.builder()

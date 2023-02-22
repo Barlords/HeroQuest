@@ -16,10 +16,15 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Transactional(propagation = MANDATORY)
 public interface HeroRepository extends JpaRepository<HeroEntity, UUID> {
 
-    @EntityGraph(attributePaths = "heros")
+    //@EntityGraph(attributePaths = "heros")
+    List<HeroEntity> findAll();
+
+    //@EntityGraph(attributePaths = "heros")
     Option<HeroEntity> findHeroEntityById(UUID id);
 
-    @EntityGraph(attributePaths = "heros")
-    Option<List<HeroEntity>> findHeroEntitiesByRarityAndSpeciality(String rarity, String speciality);
+    //@EntityGraph(attributePaths = "heros")
+    List<HeroEntity> findHeroEntitiesByRarityAndSpeciality(String rarity, String speciality);
+
+
 
 }

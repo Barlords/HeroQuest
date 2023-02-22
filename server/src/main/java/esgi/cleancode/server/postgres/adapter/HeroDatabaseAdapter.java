@@ -3,9 +3,9 @@ package esgi.cleancode.server.postgres.adapter;
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Hero;
 import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
-import esgi.cleancode.server.postgres.entity.HeroEntity;
 import esgi.cleancode.server.postgres.mapper.HeroEntityMapper;
 import esgi.cleancode.server.postgres.repository.HeroRepository;
+import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,8 @@ import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-import static io.vavr.API.Left;
 import static io.vavr.API.Try;
 
 @Slf4j
@@ -43,16 +40,24 @@ public class HeroDatabaseAdapter implements HeroPersistenceSpi {
     public Option<Hero> findById(UUID id) {
         return repository.findHeroEntityById(id).map(HeroEntityMapper::toDomain);
     }
-/*
+
     @Transactional
-    public Option<List<Hero>> findByRarityAndSpeciality(String rarity, String speciality) {
-        return repository.findHeroEntitiesByRarityAndSpeciality(rarity, speciality)
-                .onEmpty(() -> log.error("Unable to find account with rarity {} and speciality {}", rarity, speciality))
-                .fold(
-                        () -> null,
-                        heroEntities -> convertToHeros(heroEntities)
-                );
+    @Override
+    public List<Hero> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(HeroEntityMapper::toDomain)
+                .collect(List.collector());
     }
-*/
+
+    @Transactional
+    @Override
+    public List<Hero> findByRarityAndSpeciality(String rarity, String speciality) {
+        return repository.findHeroEntitiesByRarityAndSpeciality(rarity, speciality)
+                .stream()
+                .map(HeroEntityMapper::toDomain)
+                .collect(List.collector());
+    }
+
 
 }

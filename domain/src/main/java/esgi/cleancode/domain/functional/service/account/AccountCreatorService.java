@@ -1,4 +1,4 @@
-package esgi.cleancode.domain.functional.service;
+package esgi.cleancode.domain.functional.service.account;
 
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;

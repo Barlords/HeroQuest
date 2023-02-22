@@ -29,5 +29,4 @@ public enum Speciality {
         this.idAdvantage = idAdvantage;
         this.powerUpAdvantage = powerUpAdvantage;
     }
-
 }

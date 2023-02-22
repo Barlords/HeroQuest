@@ -4,4 +4,6 @@ import esgi.cleancode.domain.functional.model.Account;
 
 import java.util.UUID;
 
-public interface AccountPersistenceSpi extends PersistenceSpi<Account, UUID> {}
+public interface AccountPersistenceSpi extends PersistenceSpi<Account, UUID> {
+
+}

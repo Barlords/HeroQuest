@@ -2,11 +2,12 @@ package esgi.cleancode.server.postgres.entity;
 
 import lombok.*;
 import lombok.EqualsAndHashCode.Include;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +20,14 @@ import java.util.UUID;
 public class CardEntity {
     @Id
     @Include
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "ID", updatable = false, nullable = false)
+    @ColumnDefault("random_uuid()")
+    @Type(type = "uuid-char")
     private UUID id;
     private String name;
     private int life;

@@ -2,13 +2,10 @@ package esgi.cleancode.server.postgres.adapter;
 
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
-import esgi.cleancode.domain.functional.model.Hero;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
-import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
 import esgi.cleancode.server.postgres.mapper.AccountEntityMapper;
-import esgi.cleancode.server.postgres.mapper.HeroEntityMapper;
 import esgi.cleancode.server.postgres.repository.AccountRepository;
-import esgi.cleancode.server.postgres.repository.HeroRepository;
+import io.vavr.collection.List;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +13,6 @@ import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import static io.vavr.API.Try;
@@ -35,6 +31,15 @@ public class AccountDatabaseAdapter implements AccountPersistenceSpi {
                 .toEither()
                 .mapLeft(throwable -> new ApplicationError("Unable to save hero", null, o, throwable))
                 .map(AccountEntityMapper::toDomain);
+    }
+
+    @Transactional
+    @Override
+    public List<Account> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(AccountEntityMapper::toDomain)
+                .collect(List.collector());
     }
 
     @Override
