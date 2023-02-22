@@ -4,7 +4,10 @@ import lombok.*;
 import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
+
+import static javax.persistence.CascadeType.ALL;
 
 
 @Entity
@@ -13,16 +16,19 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "hero")
-public class HeroEntity {
+@Table(name = "account")
+public class AccountEntity {
 
     @Id
     @Include
     private UUID id;
 
     @Column(unique = true)
-    private String name;
-    private String rarity;
-    private String speciality;
+    private String pseudo;
+
+    private int nbToken;
+
+    @OneToMany(cascade = ALL)
+    private List<CardEntity> deck;
 
 }

@@ -1,18 +1,14 @@
 package esgi.cleancode.domain.functional.service.hero;
 
 import esgi.cleancode.domain.ApplicationError;
-import esgi.cleancode.domain.db.InMemoryDatabase;
 import esgi.cleancode.domain.functional.model.Hero;
 import esgi.cleancode.domain.functional.model.Rarity;
 import esgi.cleancode.domain.functional.model.Speciality;
-import esgi.cleancode.domain.exception.InvalidHeroException;
+import esgi.cleancode.domain.functional.service.hero.HeroCreatorService;
 import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
 import lombok.val;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -44,6 +40,7 @@ public class HeroCreatorServiceTest
 
         val actual = service.create(given);
         assertThat(actual).containsRightSame(given);
+        verifyNoMoreInteractions(spi);
     }
 
     @Test
@@ -61,7 +58,8 @@ public class HeroCreatorServiceTest
         when(spi.save(given)).thenReturn(Left(error));
 
         val actual = service.create(given);
-        assertThat(actual).containsLeftSame(error);
+        assertThat(actual).containsLeftInstanceOf(ApplicationError.class);
+        verifyNoMoreInteractions(spi);
     }
 
 }

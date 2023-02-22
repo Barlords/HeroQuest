@@ -6,6 +6,6 @@ import esgi.cleancode.domain.functional.model.Speciality;
 
 public record HeroCreationRequest(
         @JsonProperty("name") String name,
-        @JsonProperty("speciality") Speciality speciality,
-        @JsonProperty("rarity") Rarity rarity
+        @JsonProperty("speciality") String speciality,
+        @JsonProperty("rarity") String rarity
 )  {}

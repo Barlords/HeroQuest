@@ -4,7 +4,6 @@ import esgi.cleancode.domain.functional.model.Hero;
 import esgi.cleancode.domain.functional.model.Rarity;
 import esgi.cleancode.domain.functional.model.Speciality;
 import esgi.cleancode.server.postgres.entity.HeroEntity;
-import io.vavr.collection.List;
 
 public interface HeroEntityMapper {
 
@@ -18,12 +17,13 @@ public interface HeroEntityMapper {
     }
 
     static HeroEntity fromDomain(Hero domain) {
+        System.out.println("Creation HeroEntity");
         return HeroEntity.builder()
-                .id(domain.getId())
-                .name(domain.getName())
-                .rarity(domain.getRarity().name())
-                .speciality(domain.getSpeciality().name())
-                .build();
+               .id(domain.getId())
+               .name(domain.getName())
+               .rarity(domain.getRarity().name())
+               .speciality(domain.getSpeciality().name())
+               .build();
     }
 
 }

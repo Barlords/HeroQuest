@@ -29,7 +29,6 @@
         <app.version>1.0.0-SNAPSHOT</app.version>
         <java.version>17</java.version>
         <spring-boot.version>2.7.7</spring-boot.version>
-        <postgresql.version>42.3.1</postgresql.version>
         <h2.version>2.1.214</h2.version>
         <lombok.version>1.18.20</lombok.version>
         <vavr.version>0.10.4</vavr.version>
@@ -48,12 +47,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>${spring-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgresql.version}</version>
-                <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>

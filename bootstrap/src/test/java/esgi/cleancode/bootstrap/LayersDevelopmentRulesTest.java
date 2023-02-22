@@ -14,7 +14,7 @@ import static esgi.cleancode.bootstrap.PackagesAndLayers.*;
     cacheMode = FOREVER)
 public class LayersDevelopmentRulesTest {
 
-  //@ArchTest
+  @ArchTest
   public static final ArchRule LAYERS_DEVELOPMENT_RULE =
       layeredArchitecture()
           .layer(DOMAIN_LAYER)
