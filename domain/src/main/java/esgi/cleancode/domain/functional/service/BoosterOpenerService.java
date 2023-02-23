@@ -72,8 +72,11 @@ public class BoosterOpenerService implements BoosterOpenerApi {
         else if (seed <= (booster.getProbabilityOfCommon() + booster.getProbabilityOfRare())) {
             return Rarity.RARE;
         }
-        else {
+        else if (seed <= (booster.getProbabilityOfCommon() + booster.getProbabilityOfRare() + booster.getProbabilityOfLegendary())) {
             return Rarity.LEGENDARY;
+        }
+        else {
+            return Rarity.COMMON;
         }
     }
 

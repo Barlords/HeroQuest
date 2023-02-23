@@ -1,16 +1,98 @@
 package esgi.cleancode.domain.functional.service;
 
+import esgi.cleancode.domain.functional.model.*;
+import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
+import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
+import io.vavr.collection.List;
+import lombok.val;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.UUID;
+
+import static io.vavr.API.*;
+import static org.assertj.vavr.api.VavrAssertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BoosterOpenerServiceTest {
+
+    @InjectMocks private BoosterOpenerService service;
+
+    @Mock private AccountPersistenceSpi accountSpi;
+
+    @Mock private HeroPersistenceSpi heroSpi;
+
+    @Captor
+    private ArgumentCaptor<Account> accountCaptor;
+
+    @ParameterizedTest
+    @CsvSource({"1,3,0", "4,3,3"})
+    void should_open_silver_booster_append_card_and_save_account(
+            int currentNbToken, int expectedSizeOfDeck, int expectedNbToken
+    ) {
+        val account = Account.builder()
+                .pseudo("Barlords")
+                .nbToken(currentNbToken)
+                .build();
+
+        val hero = Hero.builder()
+                .name("Kratos")
+                .speciality(Speciality.TANK)
+                .rarity(Rarity.COMMON)
+                .build();
+
+        when(accountSpi.findById(account.getId())).thenReturn(Some(account));
+        when(heroSpi.findByRarityAndSpeciality(any(String.class), any(String.class))).thenReturn(List.of(hero));
+        when(accountSpi.save(any(Account.class))).thenReturn(Right(account));
+
+        val actual = service.openBooster(account.getId(), Booster.SILVER);
+
+        assertThat(actual).containsOnRight(account);
+
+        verify(accountSpi).save(accountCaptor.capture());
+        Assertions.assertThat(accountCaptor.getValue().getDeck().size()).isEqualTo(expectedSizeOfDeck);
+        Assertions.assertThat(accountCaptor.getValue().getNbToken()).isEqualTo(expectedNbToken);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"2,5,0", "5,5,3"})
+    void should_open_diamond_booster_append_card_and_save_account(
+            int currentNbToken, int expectedSizeOfDeck, int expectedNbToken
+    ) {
+        val account = Account.builder()
+                .pseudo("Barlords")
+                .nbToken(currentNbToken)
+                .build();
+
+        val hero = Hero.builder()
+                .name("Kratos")
+                .speciality(Speciality.TANK)
+                .rarity(Rarity.COMMON)
+                .build();
+
+        when(accountSpi.findById(account.getId())).thenReturn(Some(account));
+        when(heroSpi.findByRarityAndSpeciality(any(String.class), any(String.class))).thenReturn(List.of(hero));
+        when(accountSpi.save(any(Account.class))).thenReturn(Right(account));
+
+        val actual = service.openBooster(account.getId(), Booster.DIAMOND);
+
+        assertThat(actual).containsOnRight(account);
+
+        verify(accountSpi).save(accountCaptor.capture());
+        Assertions.assertThat(accountCaptor.getValue().getDeck().size()).isEqualTo(expectedSizeOfDeck);
+        Assertions.assertThat(accountCaptor.getValue().getNbToken()).isEqualTo(expectedNbToken);
+    }
 /*
-  @InjectMocks private BoosterOpenerService service;
-
-  @Mock private AccountPersistenceSpi spi;
-
-  @Captor private ArgumentCaptor<Account> accountCaptor;
 
   @ParameterizedTest
   @CsvSource({"1,12,11", "6,1,0"})
