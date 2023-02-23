@@ -2,17 +2,17 @@ package esgi.cleancode.client.rest.resource;
 
 import esgi.cleancode.client.rest.dto.AccountCreationRequest;
 import esgi.cleancode.client.rest.dto.BoosterOpeningRequest;
-import esgi.cleancode.client.rest.dto.HeroCreationRequest;
 import esgi.cleancode.client.rest.mapper.AccountDtoMapper;
-import esgi.cleancode.client.rest.mapper.HeroDtoMapper;
 import esgi.cleancode.domain.functional.model.Booster;
-import esgi.cleancode.domain.ports.client.*;
+import esgi.cleancode.domain.ports.client.AccountCreatorApi;
+import esgi.cleancode.domain.ports.client.AccountFinderApi;
+import esgi.cleancode.domain.ports.client.BoosterOpenerApi;
 import io.vavr.collection.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static esgi.cleancode.client.rest.mapper.HeroDtoMapper.heroCreationToDomain;
+import static esgi.cleancode.client.rest.mapper.AccountDtoMapper.accountCreationToDomain;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,7 +29,7 @@ public class AccountResource {
     @PostMapping(path = "/create")
     public ResponseEntity<Object> createAccount(@RequestBody AccountCreationRequest request) {
         return accountCreatorApi
-                .create(request.pseudo())
+                .create(accountCreationToDomain(request))
                 .map(AccountDtoMapper::toDto)
                 .fold(ResponseEntity.badRequest()::body, ResponseEntity::ok);
     }

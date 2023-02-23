@@ -12,6 +12,9 @@ import lombok.val;
 
 import java.util.UUID;
 
+import static esgi.cleancode.domain.functional.service.account.AccountCardAdderService.addCard;
+import static esgi.cleancode.domain.functional.service.account.AccountTokenCheckerService.haveEnoughToken;
+import static esgi.cleancode.domain.functional.service.account.AccountTokenRemoverService.removeToken;
 import static io.vavr.API.Left;
 
 @Slf4j
@@ -33,15 +36,15 @@ public class BoosterOpenerService implements BoosterOpenerApi {
     }
 
     private Either<ApplicationError, Account> verifyAppendAndSave(Account account, Booster booster) {
-        if (account.getNbToken() < booster.getCost()) {
+        if (!haveEnoughToken(account, booster)) {
             return Either.left(new ApplicationError("Nombre de jeton insufisant", "", account, null));
         }
 
         for (int i=0 ; i<booster.getNbCard() ; i++) {
             val card = generateCard(booster);
-            account = account.withDeck(account.getDeck().append(card));
+            account = addCard(account, card);
         }
-        account = account.withNbToken(account.getNbToken() - booster.getCost());
+        account = removeToken(account, booster.getCost());
 
         return accountPersistenceSpi.save(account);
     }
@@ -66,7 +69,7 @@ public class BoosterOpenerService implements BoosterOpenerApi {
         if (seed <= booster.getProbabilityOfCommon()) {
             return Rarity.COMMON;
         }
-        else if (seed <= booster.getProbabilityOfCommon() + booster.getProbabilityOfRare()) {
+        else if (seed <= (booster.getProbabilityOfCommon() + booster.getProbabilityOfRare())) {
             return Rarity.RARE;
         }
         else {
@@ -76,10 +79,10 @@ public class BoosterOpenerService implements BoosterOpenerApi {
 
     private Speciality selectSpeciality() {
         val seed = Math.random();
-        if (seed <= 0.33) {
+        if (seed <= 0.333) {
             return Speciality.TANK;
         }
-        else if (seed <= 0.66) {
+        else if (seed <= 0.666) {
             return Speciality.MAGE;
         }
         else {

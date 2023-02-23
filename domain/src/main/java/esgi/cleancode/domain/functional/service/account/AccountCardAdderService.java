@@ -1,22 +1,19 @@
-package esgi.cleancode.domain.functional.service;
+package esgi.cleancode.domain.functional.service.account;
 
-import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
 import esgi.cleancode.domain.functional.model.Card;
-import esgi.cleancode.domain.functional.service.validation.CardValidator;
-import esgi.cleancode.domain.ports.client.CardAppenderApi;
-import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
-import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.UUID;
+//@Slf4j
+//@RequiredArgsConstructor
+public class AccountCardAdderService {
 
-import static io.vavr.API.Left;
+    public static Account addCard(Account account, Card card) {
+        return account.withDeck(account.getDeck().append(card));
+    }
 
-@Slf4j
-@RequiredArgsConstructor
-public class CardAppenderService implements CardAppenderApi {
+    /*
 
     private final AccountPersistenceSpi spi;
 
@@ -39,4 +36,8 @@ public class CardAppenderService implements CardAppenderApi {
                 .map(o -> account.withDeck(account.getDeck().append(card)))
                 .flatMap(spi::save);
     }
+
+     */
+
 }
+

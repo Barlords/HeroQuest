@@ -16,8 +16,8 @@ public class AccountCreatorService implements AccountCreatorApi {
     private final AccountPersistenceSpi spi;
 
     @Override
-    public Either<ApplicationError, Account> create(String pseudo) {
-        return AccountValidator.validate(Account.builder().pseudo(pseudo).build())
+    public Either<ApplicationError, Account> create(Account account) {
+        return AccountValidator.validate(account)
             .toEither()
             .peekLeft(
                     error -> log.error("An error occurred while validating account : {}", error)

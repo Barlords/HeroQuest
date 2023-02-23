@@ -12,10 +12,10 @@ import java.util.UUID;
 
 import static io.vavr.API.Left;
 
-@Slf4j
-@RequiredArgsConstructor
+//@Slf4j
+//@RequiredArgsConstructor
 public class AccountTokenRemoverService {
-
+/*
     private final AccountPersistenceSpi spi;
 
     public Either<ApplicationError, Account> removeToken(UUID accountId, int amount) {
@@ -35,6 +35,11 @@ public class AccountTokenRemoverService {
                 )
                 .map(o -> account.withNbToken(account.getNbToken() - amount))
                 .flatMap(spi::save);
+    }
+*/
+
+    public static Account removeToken(Account account, int amount) {
+        return account.withNbToken(account.getNbToken() - amount);
     }
 
 }

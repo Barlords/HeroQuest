@@ -5,5 +5,5 @@ import esgi.cleancode.domain.functional.model.Account;
 import io.vavr.control.Either;
 
 public interface AccountCreatorApi {
-    Either<ApplicationError, Account> create(String pseudo);
+    Either<ApplicationError, Account> create(Account account);
 }
