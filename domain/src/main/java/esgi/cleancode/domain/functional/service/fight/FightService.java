@@ -4,7 +4,6 @@ import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
 import esgi.cleancode.domain.functional.model.Card;
 import esgi.cleancode.domain.functional.service.card.CardExperienceAdderService;
-import esgi.cleancode.domain.functional.service.card.CardExperienceCheckerService;
 import esgi.cleancode.domain.functional.service.card.CardLevelAdderService;
 import esgi.cleancode.domain.functional.service.card.CardLifeRemoverService;
 import esgi.cleancode.domain.ports.client.FightApi;
@@ -20,19 +19,9 @@ import static io.vavr.API.Left;
 
 @Slf4j
 @RequiredArgsConstructor
-public class FightSimulatorService implements FightApi {
+public class FightService implements FightApi {
 
     private final AccountPersistenceSpi accountPersistenceSpi;
-
-    private final FightArmorApplierService heroCardArmorApplierService;
-
-    private final FightAdvantageApplierService heroCardAdvantageApplierService;
-
-    private final CardLifeRemoverService heroCardLifeRemoverService;
-
-    private final CardExperienceAdderService heroCardExperienceAdderService;
-
-    private final CardLevelAdderService heroCardLevelAdderService;
 
     @Override
     public Either<ApplicationError, Account> fight(UUID accountId, UUID cardId, UUID opponentAccountId, UUID opponentCardId) {

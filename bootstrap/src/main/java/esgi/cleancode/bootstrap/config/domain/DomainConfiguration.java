@@ -4,6 +4,11 @@ import esgi.cleancode.domain.functional.service.account.AccountCreatorService;
 import esgi.cleancode.domain.functional.service.booster.BoosterCardGeneratorService;
 import esgi.cleancode.domain.functional.service.booster.BoosterOpenerService;
 import esgi.cleancode.domain.functional.service.account.AccountFinderService;
+import esgi.cleancode.domain.functional.service.card.CardExperienceAdderService;
+import esgi.cleancode.domain.functional.service.card.CardLevelAdderService;
+import esgi.cleancode.domain.functional.service.card.CardLifeRemoverService;
+import esgi.cleancode.domain.functional.service.fight.FightAdvantageApplier;
+import esgi.cleancode.domain.functional.service.fight.FightService;
 import esgi.cleancode.domain.functional.service.hero.HeroCreatorService;
 import esgi.cleancode.domain.functional.service.hero.HeroFinderService;
 import esgi.cleancode.domain.ports.client.*;
@@ -47,14 +52,9 @@ public class DomainConfiguration {
     return new BoosterOpenerService(accountPersistenceSpi, boosterCardGeneratorApi);
   }
 
-
-  /*
-
   @Bean
-  public CardAppenderApi cardAppenderApi(AccountPersistenceSpi spi) {
-    return new CardAppenderService(spi);
+  public FightApi fightApi(AccountPersistenceSpi accountPersistenceSpi) {
+    return new FightService(accountPersistenceSpi);
   }
-
-*/
 
 }

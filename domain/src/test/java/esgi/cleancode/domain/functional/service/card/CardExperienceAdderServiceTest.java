@@ -13,17 +13,13 @@ import java.util.UUID;
 @ExtendWith(MockitoExtension.class)
 public class CardExperienceAdderServiceTest {
 
-    @InjectMocks
-    private CardExperienceAdderService service;
-
-
     @ParameterizedTest
     @ValueSource(ints = 1)
     void should_win_experience(int amount) {
         var id = UUID.randomUUID();
         var given = Card.builder().id(id).build();
 
-        var actual = service.addExperience(given, amount);
+        var actual = CardExperienceAdderService.addExperience(given, amount);
 
         Assertions.assertEquals(given.getExperience()+amount, actual.getExperience());
     }

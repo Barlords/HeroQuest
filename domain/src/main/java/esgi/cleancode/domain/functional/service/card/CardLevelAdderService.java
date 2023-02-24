@@ -4,7 +4,7 @@ import esgi.cleancode.domain.functional.model.Card;
 
 public class CardLevelAdderService {
 
-    public Card levelUp(Card given) {
+    public static Card levelUp(Card given) {
         return given
                 .withExperience(given.getExperience() - 5)
                 .withLevel(given.getLevel() + 1)

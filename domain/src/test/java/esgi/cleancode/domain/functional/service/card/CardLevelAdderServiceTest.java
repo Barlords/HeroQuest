@@ -12,15 +12,12 @@ import java.util.UUID;
 @ExtendWith(MockitoExtension.class)
 public class CardLevelAdderServiceTest {
 
-    @InjectMocks
-    private CardLevelAdderService service;
-
     @Test
     void should_level_up() {
         var id = UUID.randomUUID();
         var given = Card.builder().id(id).level(1).experience(5).life(1000).power(100).armor(20).build();
 
-        var actual = service.levelUp(given);
+        var actual = CardLevelAdderService.levelUp(given);
 
         Assertions.assertEquals(given.getExperience() - 5, actual.getExperience());
         Assertions.assertEquals(given.getLevel() + 1, actual.getLevel());

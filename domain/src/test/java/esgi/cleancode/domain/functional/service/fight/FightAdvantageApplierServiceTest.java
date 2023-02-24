@@ -3,7 +3,6 @@ package esgi.cleancode.domain.functional.service.fight;
 import esgi.cleancode.domain.functional.model.Card;
 import esgi.cleancode.domain.functional.model.Rarity;
 import esgi.cleancode.domain.functional.model.Speciality;
-import esgi.cleancode.domain.functional.service.fight.FightAdvantageApplierService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,9 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class FightAdvantageApplierServiceTest {
-
-    @InjectMocks
-    private FightAdvantageApplierService service;
 
     @ParameterizedTest
     @ValueSource(ints = 100)
@@ -36,7 +32,7 @@ public class FightAdvantageApplierServiceTest {
                 .speciality(Speciality.MAGE)
                 .rarity(Rarity.COMMON).build();
 
-        int actual = service.apply(givenAtt, givenDef, damage);
+        int actual = FightAdvantageApplier.apply(givenAtt, givenDef, damage);
 
         Assertions.assertEquals(damage + Speciality.TANK.getPowerUpAdvantage(), actual);
     }
@@ -60,7 +56,7 @@ public class FightAdvantageApplierServiceTest {
                 .speciality(Speciality.TANK)
                 .rarity(Rarity.COMMON).build();
 
-        int actual = service.apply(givenAtt, givenDef, damage);
+        int actual = FightAdvantageApplier.apply(givenAtt, givenDef, damage);
 
         Assertions.assertEquals(damage, actual);
     }
