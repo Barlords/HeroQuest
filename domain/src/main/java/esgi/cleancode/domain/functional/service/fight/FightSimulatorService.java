@@ -84,6 +84,7 @@ public class FightSimulatorService implements FightApi {
     }
 
     private Either<ApplicationError, Account> fight(Account account, Card card, Card opponentCard) {
+        /*
         var cardLifeBackup = card.getLife();
         var opponentCardLifeBackup = opponentCard.getLife();
         Card winner = null;
@@ -110,10 +111,21 @@ public class FightSimulatorService implements FightApi {
         opponentCard = opponentCard.withLife(opponentCardLifeBackup);
         var modifiedHeroCard = heroCardExperienceAdderService.addExperience(winner, 1);
         modifiedHeroCard = (CardExperienceCheckerService.canLevelUp(modifiedHeroCard)) ? heroCardLevelAdderService.levelUp(modifiedHeroCard) : modifiedHeroCard;
+        */
+
+        /*
+        TODO :
+        Faire combattre card et opponentCard
+        si card gagne :
+            gagné xp
+            check xp for lvl up
+        ajouter le combat à l'historique
+        sauvegarder le compte
+         */
 
         return accountPersistenceSpi.save(account);
     }
-
+/*
     private Card turnOfFight(Card heroAtt, Card heroDef) {
 
         int damage = heroCardAdvantageApplierService.apply(heroAtt, heroDef, heroAtt.getPower());
@@ -126,6 +138,6 @@ public class FightSimulatorService implements FightApi {
 
         return null;
     }
-
+*/
 
 }
