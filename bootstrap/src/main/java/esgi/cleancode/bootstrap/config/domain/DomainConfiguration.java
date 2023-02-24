@@ -1,7 +1,8 @@
 package esgi.cleancode.bootstrap.config.domain;
 
 import esgi.cleancode.domain.functional.service.account.AccountCreatorService;
-import esgi.cleancode.domain.functional.service.BoosterOpenerService;
+import esgi.cleancode.domain.functional.service.booster.BoosterCardGeneratorService;
+import esgi.cleancode.domain.functional.service.booster.BoosterOpenerService;
 import esgi.cleancode.domain.functional.service.account.AccountFinderService;
 import esgi.cleancode.domain.functional.service.hero.HeroCreatorService;
 import esgi.cleancode.domain.functional.service.hero.HeroFinderService;
@@ -37,8 +38,13 @@ public class DomainConfiguration {
   }
 
   @Bean
-  public BoosterOpenerApi boosterOpenerApi(AccountPersistenceSpi accountPersistenceSpi, HeroPersistenceSpi heroPersistenceSpi) {
-    return new BoosterOpenerService(accountPersistenceSpi, heroPersistenceSpi);
+  public BoosterCardGeneratorApi boosterCardGeneratorApi(HeroPersistenceSpi spi) {
+    return new BoosterCardGeneratorService(spi);
+  }
+
+  @Bean
+  public BoosterOpenerApi boosterOpenerApi(AccountPersistenceSpi accountPersistenceSpi, BoosterCardGeneratorApi boosterCardGeneratorApi) {
+    return new BoosterOpenerService(accountPersistenceSpi, boosterCardGeneratorApi);
   }
 
 

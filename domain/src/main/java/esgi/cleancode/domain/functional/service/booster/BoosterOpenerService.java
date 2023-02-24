@@ -1,7 +1,9 @@
-package esgi.cleancode.domain.functional.service;
+package esgi.cleancode.domain.functional.service.booster;
 
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.*;
+import esgi.cleancode.domain.functional.service.card.CardCreatorService;
+import esgi.cleancode.domain.ports.client.BoosterCardGeneratorApi;
 import esgi.cleancode.domain.ports.client.BoosterOpenerApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
 import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
@@ -23,7 +25,7 @@ public class BoosterOpenerService implements BoosterOpenerApi {
 
     private final AccountPersistenceSpi accountPersistenceSpi;
 
-    private final HeroPersistenceSpi heroPersistenceSpi;
+    private final BoosterCardGeneratorApi boosterCardGeneratorApi;
 
     @Override
     public Either<ApplicationError, Account> openBooster(UUID accountId, Booster booster) {
@@ -41,56 +43,11 @@ public class BoosterOpenerService implements BoosterOpenerApi {
         }
 
         for (int i=0 ; i<booster.getNbCard() ; i++) {
-            val card = generateCard(booster);
+            val card = boosterCardGeneratorApi.generateCard(booster);
             account = addCard(account, card);
         }
         account = removeToken(account, booster.getCost());
 
         return accountPersistenceSpi.save(account);
     }
-
-    private Card generateCard(Booster booster) {
-        val rarity = selectRarity(booster);
-        val speciality = selectSpeciality();
-        val heros = heroPersistenceSpi.findByRarityAndSpeciality(rarity.name(), speciality.name());
-        val hero = heros.shuffle().get(0);
-        return Card.builder()
-                .name(hero.getName())
-                .rarity(hero.getRarity())
-                .speciality(hero.getSpeciality())
-                .life((int) (hero.getSpeciality().getLife() * hero.getRarity().getCoefficient()))
-                .power((int) (hero.getSpeciality().getPower() * hero.getRarity().getCoefficient()))
-                .armor((int) (hero.getSpeciality().getArmor() * hero.getRarity().getCoefficient()))
-                .build();
-    }
-
-    private Rarity selectRarity(Booster booster) {
-        val seed = Math.random();
-        if (seed <= booster.getProbabilityOfCommon()) {
-            return Rarity.COMMON;
-        }
-        else if (seed <= (booster.getProbabilityOfCommon() + booster.getProbabilityOfRare())) {
-            return Rarity.RARE;
-        }
-        else if (seed <= (booster.getProbabilityOfCommon() + booster.getProbabilityOfRare() + booster.getProbabilityOfLegendary())) {
-            return Rarity.LEGENDARY;
-        }
-        else {
-            return Rarity.COMMON;
-        }
-    }
-
-    private Speciality selectSpeciality() {
-        val seed = Math.random();
-        if (seed <= 0.333) {
-            return Speciality.TANK;
-        }
-        else if (seed <= 0.666) {
-            return Speciality.MAGE;
-        }
-        else {
-            return Speciality.ASSASSIN;
-        }
-    }
-
 }

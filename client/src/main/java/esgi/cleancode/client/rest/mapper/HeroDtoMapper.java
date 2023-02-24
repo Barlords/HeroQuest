@@ -13,7 +13,8 @@ public interface HeroDtoMapper {
                 hero.getId(),
                 hero.getName(),
                 hero.getRarity().name(),
-                hero.getSpeciality().name());
+                hero.getSpeciality().name()
+        );
     }
 
     static Hero heroCreationToDomain(HeroCreationRequest request) {

@@ -21,7 +21,8 @@ public interface CardDtoMapper {
                 card.getArmor(),
                 card.getName(),
                 card.getSpeciality().name(),
-                card.getRarity().name()
+                card.getRarity().name(),
+                card.getFightHistory().map(FightResumeDtoMapper::toDto)
         );
     }
 /*

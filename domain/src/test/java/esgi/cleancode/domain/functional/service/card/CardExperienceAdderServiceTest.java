@@ -23,7 +23,7 @@ public class CardExperienceAdderServiceTest {
         var id = UUID.randomUUID();
         var given = Card.builder().id(id).build();
 
-        var actual = service.winExp(given, amount);
+        var actual = service.addExperience(given, amount);
 
         Assertions.assertEquals(given.getExperience()+amount, actual.getExperience());
     }

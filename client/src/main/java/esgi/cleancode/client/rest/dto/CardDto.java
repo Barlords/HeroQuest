@@ -1,6 +1,7 @@
 package esgi.cleancode.client.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import io.vavr.collection.Seq;
 
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ public record CardDto(
         int armor,
         String name,
         String speciality,
-        String rarity
+        String rarity,
+        Seq<FightResumeDto> fightHistory
 ) {
 }

@@ -6,12 +6,11 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 import static javax.persistence.CascadeType.ALL;
+
 
 @Entity
 @Getter
@@ -19,8 +18,10 @@ import static javax.persistence.CascadeType.ALL;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "card")
-public class CardEntity {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "fight_resume")
+public class FightResumeEntity {
+
     @Id
     @Include
     @GeneratedValue(generator = "UUID")
@@ -32,15 +33,7 @@ public class CardEntity {
     @ColumnDefault("random_uuid()")
     @Type(type = "uuid-char")
     private UUID id;
-    private String name;
-    private int life;
-    private int experience;
-    private int power;
-    private int armor;
-    private String speciality;
-    private String rarity;
-    private int level;
-    @OneToMany(cascade = ALL)
-    private List<FightResumeEntity> fightHistory;
+    private UUID id_opponent;
+    private String fightResult;
 
 }

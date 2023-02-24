@@ -11,7 +11,8 @@ public interface AccountDtoMapper {
                 account.getId(),
                 account.getPseudo(),
                 account.getNbToken(),
-                account.getDeck().map(CardDtoMapper::toDto));
+                account.getDeck().map(CardDtoMapper::toDto)
+        );
     }
 
     static Account accountCreationToDomain(AccountCreationRequest request) {

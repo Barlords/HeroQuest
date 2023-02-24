@@ -1,6 +1,7 @@
-package esgi.cleancode.domain.functional.service.card;
+package esgi.cleancode.domain.functional.service.fight;
 
 import esgi.cleancode.domain.functional.model.Card;
+import esgi.cleancode.domain.functional.service.fight.FightArmorApplierService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,10 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class CardArmorApplierServiceTest {
+public class FightArmorApplierServiceTest {
 
     @InjectMocks
-    private CardArmorApplierService service;
+    private FightArmorApplierService service;
 
     @ParameterizedTest
     @ValueSource(ints = 100)

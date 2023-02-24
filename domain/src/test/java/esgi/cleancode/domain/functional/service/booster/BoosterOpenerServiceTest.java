@@ -1,9 +1,9 @@
-package esgi.cleancode.domain.functional.service;
+package esgi.cleancode.domain.functional.service.booster;
 
+import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.*;
+import esgi.cleancode.domain.ports.client.BoosterCardGeneratorApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
-import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
-import io.vavr.collection.List;
 import lombok.val;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.UUID;
 
 import static io.vavr.API.*;
 import static org.assertj.vavr.api.VavrAssertions.assertThat;
@@ -30,7 +28,7 @@ class BoosterOpenerServiceTest {
 
     @Mock private AccountPersistenceSpi accountSpi;
 
-    @Mock private HeroPersistenceSpi heroSpi;
+    @Mock private BoosterCardGeneratorApi cardGeneratorApi;
 
     @Captor
     private ArgumentCaptor<Account> accountCaptor;
@@ -51,8 +49,16 @@ class BoosterOpenerServiceTest {
                 .rarity(Rarity.COMMON)
                 .build();
 
+        val card = Card.builder()
+                .name("Kratos")
+                .life((int) (Speciality.TANK.getLife() * (1 + Rarity.COMMON.getCoefficient())))
+                .power((int) (Speciality.TANK.getPower() * (1 + Rarity.COMMON.getCoefficient())))
+                .armor((int) (Speciality.TANK.getArmor() * (1 + Rarity.COMMON.getCoefficient())))
+                .speciality(Speciality.TANK)
+                .rarity(Rarity.COMMON).build();
+
         when(accountSpi.findById(account.getId())).thenReturn(Some(account));
-        when(heroSpi.findByRarityAndSpeciality(any(String.class), any(String.class))).thenReturn(List.of(hero));
+        when(cardGeneratorApi.generateCard(Booster.SILVER)).thenReturn(card);
         when(accountSpi.save(any(Account.class))).thenReturn(Right(account));
 
         val actual = service.openBooster(account.getId(), Booster.SILVER);
@@ -60,6 +66,7 @@ class BoosterOpenerServiceTest {
         assertThat(actual).containsOnRight(account);
 
         verify(accountSpi).save(accountCaptor.capture());
+        org.junit.jupiter.api.Assertions.assertTrue(accountCaptor.getValue().getDeck().contains(card));
         Assertions.assertThat(accountCaptor.getValue().getDeck().size()).isEqualTo(expectedSizeOfDeck);
         Assertions.assertThat(accountCaptor.getValue().getNbToken()).isEqualTo(expectedNbToken);
     }
@@ -80,8 +87,16 @@ class BoosterOpenerServiceTest {
                 .rarity(Rarity.COMMON)
                 .build();
 
+        val card = Card.builder()
+                .name("Kratos")
+                .life((int) (Speciality.TANK.getLife() * (1 + Rarity.COMMON.getCoefficient())))
+                .power((int) (Speciality.TANK.getPower() * (1 + Rarity.COMMON.getCoefficient())))
+                .armor((int) (Speciality.TANK.getArmor() * (1 + Rarity.COMMON.getCoefficient())))
+                .speciality(Speciality.TANK)
+                .rarity(Rarity.COMMON).build();
+
         when(accountSpi.findById(account.getId())).thenReturn(Some(account));
-        when(heroSpi.findByRarityAndSpeciality(any(String.class), any(String.class))).thenReturn(List.of(hero));
+        when(cardGeneratorApi.generateCard(Booster.DIAMOND)).thenReturn(card);
         when(accountSpi.save(any(Account.class))).thenReturn(Right(account));
 
         val actual = service.openBooster(account.getId(), Booster.DIAMOND);
@@ -89,9 +104,42 @@ class BoosterOpenerServiceTest {
         assertThat(actual).containsOnRight(account);
 
         verify(accountSpi).save(accountCaptor.capture());
+        org.junit.jupiter.api.Assertions.assertTrue(accountCaptor.getValue().getDeck().contains(card));
         Assertions.assertThat(accountCaptor.getValue().getDeck().size()).isEqualTo(expectedSizeOfDeck);
         Assertions.assertThat(accountCaptor.getValue().getNbToken()).isEqualTo(expectedNbToken);
     }
+
+    @Test
+    void should_not_open_if_no_account_found() {
+        val account = Account.builder()
+                .pseudo("Barlords")
+                .build();
+
+        when(accountSpi.findById(account.getId())).thenReturn(None());
+
+        val actual = service.openBooster(account.getId(), Booster.SILVER);
+        assertThat(actual).containsLeftInstanceOf(ApplicationError.class);
+        verifyNoInteractions(cardGeneratorApi);
+        verifyNoMoreInteractions(accountSpi);
+    }
+
+    @Test
+    void should_not_open_if_account_have_no_enough_token() {
+        val account = Account.builder()
+                .pseudo("Barlords")
+                .nbToken(0)
+                .build();
+
+        when(accountSpi.findById(account.getId())).thenReturn(Some(account));
+
+        val actual = service.openBooster(account.getId(), Booster.SILVER);
+        assertThat(actual).containsLeftInstanceOf(ApplicationError.class);
+        verifyNoInteractions(cardGeneratorApi);
+        verifyNoMoreInteractions(accountSpi);
+    }
+
+
+
 /*
 
   @ParameterizedTest

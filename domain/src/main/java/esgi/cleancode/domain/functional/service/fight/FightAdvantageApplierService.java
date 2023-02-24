@@ -1,8 +1,8 @@
-package esgi.cleancode.domain.functional.service.card;
+package esgi.cleancode.domain.functional.service.fight;
 
 import esgi.cleancode.domain.functional.model.Card;
 
-public class CardAdvantageApplierService {
+public class FightAdvantageApplierService {
 
     public int apply(Card givenAtt, Card givenDef, int damage) {
         int result = damage;

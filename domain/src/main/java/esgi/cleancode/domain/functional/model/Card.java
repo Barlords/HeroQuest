@@ -1,9 +1,13 @@
 package esgi.cleancode.domain.functional.model;
 
+import io.vavr.collection.Seq;
 import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Value;
 import lombok.With;
+
+import static io.vavr.API.Seq;
+
 
 import java.util.UUID;
 
@@ -29,9 +33,13 @@ public class Card
     @With
     int armor;
 
+    @With @Default
+    Seq<FightResume> fightHistory = Seq();
+
     String name;
 
     Speciality speciality;
 
     Rarity rarity;
+
 }
