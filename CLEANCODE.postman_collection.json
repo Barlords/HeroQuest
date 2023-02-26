@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "c8f0a7c8-41e9-4fb8-8185-834eeeab9f0f",
+		"name": "CLEANCODE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20211046"
+	},
+	"item": [
+		{
+			"name": "test requetes",
+			"item": [
+				{
+					"name": "create hero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"speciality\": \"TANK\",\r\n    \"rarity\": \"COMMON\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/hero/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hero",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all hero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/hero/find_all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hero",
+								"find_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create account Barlords",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pseudo\": \"Barlords\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/account/find_all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"find_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "open booster",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"booster\": \"SILVER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/8e908f79-19bb-49d3-949a-80fc002790ea/open_booster",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"8e908f79-19bb-49d3-949a-80fc002790ea",
+								"open_booster"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "simulation",
+			"item": [
+				{
+					"name": "create account Razmoquette",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pseudo\": \"Razmoquette\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
