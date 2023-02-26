@@ -53,8 +53,6 @@ public class DomainConfiguration {
   }
 
   @Bean
-  public FightApi fightApi(AccountPersistenceSpi accountPersistenceSpi) {
-    return new FightService(accountPersistenceSpi);
-  }
+  public FightApi fightApi(AccountPersistenceSpi accountPersistenceSpi) { return new FightService(accountPersistenceSpi); }
 
 }

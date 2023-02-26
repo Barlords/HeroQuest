@@ -29,7 +29,7 @@ public class AccountDatabaseAdapter implements AccountPersistenceSpi {
         val entity = AccountEntityMapper.fromDomain(o);
         return Try(() -> repository.save(entity))
                 .toEither()
-                .mapLeft(throwable -> new ApplicationError("Unable to save hero", null, o, throwable))
+                .mapLeft(throwable -> new ApplicationError("Unable to save account", null, o, throwable))
                 .map(AccountEntityMapper::toDomain);
     }
 
