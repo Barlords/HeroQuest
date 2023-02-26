@@ -130,7 +130,6 @@ public class HeroDatabaseAdapterTest  {
     class FindAll {
         @Test
         void should_find() {
-            val id = UUID.randomUUID();
             val entity = HeroEntity.builder()
                     .name("Kratos")
                     .speciality("TANK")
@@ -150,8 +149,6 @@ public class HeroDatabaseAdapterTest  {
 
         @Test
         void should_not_find() {
-            val id = UUID.randomUUID();
-
             when(repository.findAll()).thenReturn(List.of());
 
             val actual = adapter.findAll();
