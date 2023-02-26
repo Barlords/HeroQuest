@@ -117,7 +117,6 @@ public class AccountDatabaseAdapterTest {
     class FindAll {
         @Test
         void should_find() {
-            val id = UUID.randomUUID();
             val entity = AccountEntity.builder().pseudo("Barlords").deck(List.of()).build();
             val domain = AccountEntityMapper.toDomain(entity);
 
@@ -133,8 +132,6 @@ public class AccountDatabaseAdapterTest {
 
         @Test
         void should_not_find() {
-            val id = UUID.randomUUID();
-
             when(repository.findAll()).thenReturn(List.of());
 
             val actual = adapter.findAll();
