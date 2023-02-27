@@ -3,9 +3,12 @@ package esgi.cleancode.domain.functional.service.fight;
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
 import esgi.cleancode.domain.functional.model.Card;
+import esgi.cleancode.domain.functional.model.FightResult;
+import esgi.cleancode.domain.functional.model.FightResume;
 import esgi.cleancode.domain.functional.service.account.AccountCardUpdaterService;
 import esgi.cleancode.domain.functional.service.card.CardExperienceAdderService;
 import esgi.cleancode.domain.functional.service.card.CardExperienceCheckerService;
+import esgi.cleancode.domain.functional.service.card.CardFightResumeAdderService;
 import esgi.cleancode.domain.functional.service.card.CardLifeRemoverService;
 import esgi.cleancode.domain.ports.client.FightApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
@@ -99,12 +102,16 @@ public class FightService implements FightApi {
         }
 
         if (winner.getId() == card.getId()) {
-            var modifiedAccount = FightWinnerApplierService.apply(account, backupCard, 1);
-
-            return accountPersistenceSpi.save(modifiedAccount);
+            System.out.println("Vous avez gagné le combat");
+            card = CardFightResumeAdderService.addFightResume(backupCard, FightResumeCreatorService.create(backupOpponentCard, FightResult.WIN));
+            account = FightWinnerApplierService.apply(account, card, 1);
+        }
+        else {
+            card = CardFightResumeAdderService.addFightResume(backupCard, FightResumeCreatorService.create(backupOpponentCard, FightResult.LOOSE));
+            account = AccountCardUpdaterService.updateCardInDeck(account, card);
         }
 
-        return Either.right(account);
+        return accountPersistenceSpi.save(account);
     }
 
 }
