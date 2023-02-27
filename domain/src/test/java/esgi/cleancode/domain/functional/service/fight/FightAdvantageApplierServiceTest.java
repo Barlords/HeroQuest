@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +31,7 @@ public class FightAdvantageApplierServiceTest {
                 .speciality(Speciality.MAGE)
                 .rarity(Rarity.COMMON).build();
 
-        int actual = FightAdvantageApplier.apply(givenAtt, givenDef, damage);
+        int actual = FightAdvantageApplierService.apply(givenAtt, givenDef, damage);
 
         Assertions.assertEquals(damage + Speciality.TANK.getPowerUpAdvantage(), actual);
     }
@@ -56,7 +55,7 @@ public class FightAdvantageApplierServiceTest {
                 .speciality(Speciality.TANK)
                 .rarity(Rarity.COMMON).build();
 
-        int actual = FightAdvantageApplier.apply(givenAtt, givenDef, damage);
+        int actual = FightAdvantageApplierService.apply(givenAtt, givenDef, damage);
 
         Assertions.assertEquals(damage, actual);
     }

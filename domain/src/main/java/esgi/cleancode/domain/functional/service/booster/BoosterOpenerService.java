@@ -3,6 +3,9 @@ package esgi.cleancode.domain.functional.service.booster;
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
 import esgi.cleancode.domain.functional.model.Booster;
+import esgi.cleancode.domain.functional.service.account.AccountCardAdderService;
+import esgi.cleancode.domain.functional.service.account.AccountTokenCheckerService;
+import esgi.cleancode.domain.functional.service.account.AccountTokenRemoverService;
 import esgi.cleancode.domain.ports.client.BoosterCardGeneratorApi;
 import esgi.cleancode.domain.ports.client.BoosterOpenerApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
@@ -13,9 +16,6 @@ import lombok.val;
 
 import java.util.UUID;
 
-import static esgi.cleancode.domain.functional.service.account.AccountCardAdderService.addCard;
-import static esgi.cleancode.domain.functional.service.account.AccountTokenCheckerService.haveEnoughToken;
-import static esgi.cleancode.domain.functional.service.account.AccountTokenRemoverService.removeToken;
 import static io.vavr.API.Left;
 
 @Slf4j
@@ -37,15 +37,16 @@ public class BoosterOpenerService implements BoosterOpenerApi {
     }
 
     private Either<ApplicationError, Account> verifyAppendAndSave(Account account, Booster booster) {
-        if (!haveEnoughToken(account, booster)) {
+        if (!AccountTokenCheckerService.haveEnoughToken(account, booster)) {
             return Either.left(new ApplicationError("Nombre de jeton insufisant", "", account, null));
         }
 
         for (int i=0 ; i<booster.getNbCard() ; i++) {
             val card = boosterCardGeneratorApi.generateCard(booster);
-            account = addCard(account, card);
+            account = AccountCardAdderService.addCard(account, card);
         }
-        account = removeToken(account, booster.getCost());
+        
+        account = AccountTokenRemoverService.removeToken(account, booster.getCost());
 
         return accountPersistenceSpi.save(account);
     }

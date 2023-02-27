@@ -3,6 +3,10 @@ package esgi.cleancode.domain.functional.service.fight;
 import esgi.cleancode.domain.ApplicationError;
 import esgi.cleancode.domain.functional.model.Account;
 import esgi.cleancode.domain.functional.model.Card;
+import esgi.cleancode.domain.functional.service.account.AccountCardUpdaterService;
+import esgi.cleancode.domain.functional.service.card.CardExperienceAdderService;
+import esgi.cleancode.domain.functional.service.card.CardExperienceCheckerService;
+import esgi.cleancode.domain.functional.service.card.CardLifeRemoverService;
 import esgi.cleancode.domain.ports.client.FightApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
 import io.vavr.control.Either;
@@ -70,60 +74,37 @@ public class FightService implements FightApi {
     }
 
     private Either<ApplicationError, Account> fight(Account account, Card card, Card opponentCard) {
-        /*
-        var cardLifeBackup = card.getLife();
-        var opponentCardLifeBackup = opponentCard.getLife();
+        final Card backupCard = card;
+        final Card backupOpponentCard = opponentCard;
+
         Card winner = null;
         while(winner == null) {
 
-            int damage = heroCardAdvantageApplierService.apply(card, opponentCard, card.getPower());
-            damage = heroCardArmorApplierService.apply(opponentCard, damage);
-            opponentCard = heroCardLifeRemoverService.remove(opponentCard, damage);
+            int damage = FightAdvantageApplierService.apply(card, opponentCard, card.getPower());
+            damage = FightArmorApplierService.apply(opponentCard, damage);
+            opponentCard = CardLifeRemoverService.remove(opponentCard, damage);
 
             if (FightEndCheckerService.isEnd(card, opponentCard)) {
                 winner = card;
                 break;
             }
 
-            damage = heroCardAdvantageApplierService.apply(opponentCard, card, opponentCard.getPower());
-            damage = heroCardArmorApplierService.apply(card, damage);
-            card = heroCardLifeRemoverService.remove(card, damage);
+            damage = FightAdvantageApplierService.apply(opponentCard, card, opponentCard.getPower());
+            damage = FightArmorApplierService.apply(card, damage);
+            card = CardLifeRemoverService.remove(card, damage);
 
             if (FightEndCheckerService.isEnd(card, opponentCard)) {
                 winner = opponentCard;
             }
         }
-        card = card.withLife(cardLifeBackup);
-        opponentCard = opponentCard.withLife(opponentCardLifeBackup);
-        var modifiedHeroCard = heroCardExperienceAdderService.addExperience(winner, 1);
-        modifiedHeroCard = (CardExperienceCheckerService.canLevelUp(modifiedHeroCard)) ? heroCardLevelAdderService.levelUp(modifiedHeroCard) : modifiedHeroCard;
-        */
 
-        /*
-        TODO :
-        Faire combattre card et opponentCard
-        si card gagne :
-            gagné xp
-            check xp for lvl up
-        ajouter le combat à l'historique
-        sauvegarder le compte
-         */
+        if (winner.getId() == card.getId()) {
+            var modifiedAccount = FightWinnerApplierService.apply(account, backupCard, 1);
 
-        return accountPersistenceSpi.save(account);
-    }
-/*
-    private Card turnOfFight(Card heroAtt, Card heroDef) {
-
-        int damage = heroCardAdvantageApplierService.apply(heroAtt, heroDef, heroAtt.getPower());
-        damage = heroCardArmorApplierService.apply(heroDef, damage);
-        heroDef = heroCardLifeRemoverService.remove(heroDef, damage);
-
-        if(FightEndCheckerService.isEnd(heroAtt, heroDef)) {
-            return heroAtt;
+            return accountPersistenceSpi.save(modifiedAccount);
         }
 
-        return null;
+        return Either.right(account);
     }
-*/
 
 }

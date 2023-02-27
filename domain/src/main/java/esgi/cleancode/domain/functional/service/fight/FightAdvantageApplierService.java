@@ -2,7 +2,7 @@ package esgi.cleancode.domain.functional.service.fight;
 
 import esgi.cleancode.domain.functional.model.Card;
 
-public class FightAdvantageApplier {
+public class FightAdvantageApplierService {
 
     public static int apply(Card givenAtt, Card givenDef, int damage) {
         int result = damage;
