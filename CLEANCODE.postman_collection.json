@@ -57,7 +57,45 @@
 					"response": []
 				},
 				{
+					"name": "find all account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/account/find_all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"find_all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "simulation",
+			"item": [
+				{
 					"name": "create account Barlords",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"barlords_id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -85,60 +123,20 @@
 					"response": []
 				},
 				{
-					"name": "find all account",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/account/find_all",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"account",
-								"find_all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "open booster",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"booster\": \"SILVER\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/account/8e908f79-19bb-49d3-949a-80fc002790ea/open_booster",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"account",
-								"8e908f79-19bb-49d3-949a-80fc002790ea",
-								"open_booster"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "simulation",
-			"item": [
-				{
 					"name": "create account Razmoquette",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"razmoquette_id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -164,8 +162,149 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "open booster for Barlords",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"card_id\", jsonData.deck[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"booster\": \"SILVER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/{{barlords_id}}/open_booster",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"{{barlords_id}}",
+								"open_booster"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "open booster for Razmoquette",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"opponent_card_id\", jsonData.deck[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"booster\": \"SILVER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/{{razmoquette_id}}/open_booster",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"{{razmoquette_id}}",
+								"open_booster"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"opponent_account_id\": \"{{razmoquette_id}}\",\r\n    \"opponent_card_id\": \"{{opponent_card_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/account/{{barlords_id}}/{{card_id}}/fight",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"{{barlords_id}}",
+								"{{card_id}}",
+								"fight"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "barlords_id",
+			"value": "e39fb4bc-d27e-430d-819d-54f159871b7b"
+		},
+		{
+			"key": "razmoquette_id",
+			"value": "476582c2-c6f6-4ee5-a035-e34b12f4a6c8"
+		},
+		{
+			"key": "card_id",
+			"value": "401fe71b-54c4-4c27-ba3f-3bf4b77906c0"
+		},
+		{
+			"key": "opponent_card_id",
+			"value": ""
 		}
 	]
 }
