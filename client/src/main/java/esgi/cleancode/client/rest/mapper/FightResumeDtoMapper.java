@@ -8,7 +8,7 @@ public interface FightResumeDtoMapper {
     static FightResumeDto toDto(FightResume fightResume) {
         return new FightResumeDto(
                 fightResume.getId(),
-                fightResume.getIdOpponent(),
+                fightResume.getIdCardOpponent(),
                 fightResume.getFightResult().name()
         );
     }

@@ -8,7 +8,7 @@ public class FightResumeCreatorService {
 
     public static FightResume create(Card opponent, FightResult fightResult) {
         return FightResume.builder()
-                .idOpponent(opponent.getId())
+                .idCardOpponent(opponent.getId())
                 .fightResult(fightResult)
                 .build();
     }

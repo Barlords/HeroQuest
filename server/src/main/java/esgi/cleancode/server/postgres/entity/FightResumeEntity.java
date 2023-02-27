@@ -31,7 +31,10 @@ public class FightResumeEntity {
     @ColumnDefault("random_uuid()")
     @Type(type = "uuid-char")
     private UUID id;
-    private UUID id_opponent;
+
+    @Type(type = "uuid-char")
+    private UUID idCardOpponent;
+
     private String fightResult;
 
 }

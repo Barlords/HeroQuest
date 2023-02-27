@@ -16,7 +16,7 @@ public interface AccountEntityMapper {
     }
 
     static AccountEntity fromDomain(Account domain) {
-        System.out.println("Creation HeroEntity");
+        System.out.println("Creation AccountEntity");
         return AccountEntity.builder()
                 .id(domain.getId())
                 .pseudo(domain.getPseudo())

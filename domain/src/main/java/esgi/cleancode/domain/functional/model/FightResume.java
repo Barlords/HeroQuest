@@ -13,7 +13,7 @@ public class FightResume
     @Default
     UUID id = UUID.randomUUID();
 
-    UUID idOpponent;
+    UUID idCardOpponent;
 
     FightResult fightResult;
 }

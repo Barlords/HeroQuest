@@ -17,7 +17,7 @@ public class FightResumeCreatorServiceTest
 
         val actual = FightResumeCreatorService.create(card, FightResult.WIN);
 
-        Assertions.assertEquals(card.getId(), actual.getIdOpponent());
+        Assertions.assertEquals(card.getId(), actual.getIdCardOpponent());
         Assertions.assertEquals(FightResult.WIN, actual.getFightResult());
     }
 

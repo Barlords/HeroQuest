@@ -4,6 +4,8 @@ import esgi.cleancode.domain.functional.model.Card;
 import esgi.cleancode.domain.functional.model.Rarity;
 import esgi.cleancode.domain.functional.model.Speciality;
 import esgi.cleancode.server.postgres.entity.CardEntity;
+import esgi.cleancode.server.postgres.entity.FightResumeEntity;
+import io.vavr.collection.List;
 
 public interface CardEntityMapper {
 
@@ -18,11 +20,12 @@ public interface CardEntityMapper {
                 .power(entity.getPower())
                 .rarity(Rarity.valueOf(entity.getRarity()))
                 .speciality(Speciality.valueOf(entity.getSpeciality()))
+                .fightHistory(List.ofAll(entity.getFightHistory()).map(FightResumeEntityMapper::toDomain))
                 .build();
     }
 
     static CardEntity fromDomain(Card domain) {
-        System.out.println("Creation HeroEntity");
+        System.out.println("Creation CardEntity");
         return CardEntity.builder()
                .id(domain.getId())
                 .name(domain.getName())
@@ -33,6 +36,7 @@ public interface CardEntityMapper {
                 .power(domain.getPower())
                 .rarity(domain.getRarity().name())
                 .speciality(domain.getSpeciality().name())
+                .fightHistory(domain.getFightHistory().map(FightResumeEntityMapper::fromDomain).asJavaMutable())
                 .build();
     }
 

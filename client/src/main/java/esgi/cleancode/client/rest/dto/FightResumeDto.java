@@ -9,7 +9,7 @@ import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
 @JsonAutoDetect(fieldVisibility = ANY)
 public record FightResumeDto(
         UUID id,
-        UUID id_opponent,
+        UUID id_card_opponent,
         String fightResult
 ) {
 }
