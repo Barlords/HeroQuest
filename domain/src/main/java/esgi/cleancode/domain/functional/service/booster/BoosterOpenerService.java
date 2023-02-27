@@ -1,12 +1,11 @@
 package esgi.cleancode.domain.functional.service.booster;
 
 import esgi.cleancode.domain.ApplicationError;
-import esgi.cleancode.domain.functional.model.*;
-import esgi.cleancode.domain.functional.service.card.CardCreatorService;
+import esgi.cleancode.domain.functional.model.Account;
+import esgi.cleancode.domain.functional.model.Booster;
 import esgi.cleancode.domain.ports.client.BoosterCardGeneratorApi;
 import esgi.cleancode.domain.ports.client.BoosterOpenerApi;
 import esgi.cleancode.domain.ports.server.AccountPersistenceSpi;
-import esgi.cleancode.domain.ports.server.HeroPersistenceSpi;
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

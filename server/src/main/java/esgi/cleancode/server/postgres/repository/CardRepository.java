@@ -15,7 +15,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Transactional(propagation = MANDATORY)
 public interface CardRepository extends JpaRepository<CardEntity, UUID> {
 
-    //@EntityGraph(attributePaths = "cards")
     Option<CardEntity> findCardEntityById(UUID id);
 
 }

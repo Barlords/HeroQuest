@@ -19,7 +19,6 @@ public interface AccountRepository extends JpaRepository<AccountEntity, UUID> {
 
     List<AccountEntity> findAll();
 
-    //@EntityGraph(attributePaths = "accounts")
     Option<AccountEntity> findAccountEntityById(UUID id);
 
 }

@@ -1,8 +1,6 @@
 package esgi.cleancode.client.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import esgi.cleancode.domain.functional.model.Rarity;
-import esgi.cleancode.domain.functional.model.Speciality;
 
 import java.util.UUID;
 
